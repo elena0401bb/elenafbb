@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Elena_Fu独立从0搭建并运营法考meme账号的内容运营案例">
+  <title>法考 meme｜学生共鸣与品牌内容｜Elena_Fu</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #17191d;
+      --muted: #687078;
+      --paper: #f4f6f2;
+      --white: #fcfdfb;
+      --surface: var(--white);
+      --surface-strong: #eef1ec;
+      --line: rgba(23, 25, 29, .11);
+      --lime: #b9ed4a;
+      --lime-soft: #dcf7a5;
+      --lime-deep: #385900;
+      --accent: var(--lime);
+      --accent-deep: var(--lime-deep);
+      --accent-soft: var(--lime-soft);
+      --shadow: rgba(39, 48, 45, .15);
+      --radius-card: 24px;
+      --radius-shell: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #dfe3de;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, a { font: inherit; }
+    button { color: inherit; }
+
+    .site {
+      width: min(1510px, calc(100% - 28px));
+      min-height: 100dvh;
+      margin: 18px auto 72px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-shell);
+      background: var(--paper);
+      box-shadow: 0 30px 90px rgba(38, 41, 40, .14);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 0 42px;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 86%, transparent);
+      backdrop-filter: blur(22px) saturate(135%);
+      -webkit-backdrop-filter: blur(22px) saturate(135%);
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 780;
+      letter-spacing: -.025em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .nav nav a { text-decoration: none; }
+    .nav nav a:last-child {
+      padding: 10px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 720;
+    }
+
+    .hero {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      align-items: center;
+      gap: 40px;
+      padding: 54px 52px 46px 64px;
+    }
+
+    .hero-copy { position: relative; z-index: 4; max-width: 610px; }
+    .eyebrow {
+      width: fit-content;
+      margin: 0 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      color: var(--accent-deep);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 4vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -.058em;
+      font-weight: 860;
+    }
+
+    h1 span { display: block; white-space: nowrap; }
+    h1 span + span { margin-top: 9px; color: var(--accent-deep); }
+
+    .lead {
+      max-width: 510px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .note-wall {
+      position: relative;
+      min-height: 560px;
+      isolation: isolate;
+    }
+
+    .wall-field {
+      position: absolute;
+      inset: 30px 15px 20px 40px;
+      border-radius: 44% 56% 48% 52%;
+      background: var(--accent-soft);
+      transform: rotate(-4deg);
+    }
+
+    .wall-card {
+      position: absolute;
+      overflow: hidden;
+      border: 6px solid var(--surface);
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .wall-card img { width: 100%; height: 100%; object-fit: cover; }
+    .wall-card.profile { --rotation: -5deg; z-index: 2; left: 4%; top: 9%; width: 42%; height: 68%; transform: rotate(var(--rotation)); }
+    .wall-card.profile img { object-position: 50% 4%; }
+    .wall-card.main { --rotation: 3deg; z-index: 4; left: 29%; top: 4%; width: 47%; height: 82%; transform: rotate(var(--rotation)); }
+    .wall-card.main img { object-position: 50% 17%; }
+    .wall-card.support { --rotation: 7deg; z-index: 3; right: 1%; top: 25%; width: 31%; height: 55%; transform: rotate(var(--rotation)); }
+    .wall-card.support img { object-position: 50% 23%; }
+    .wall-card.save { --rotation: -1deg; z-index: 5; left: 13%; bottom: 0; width: 31%; height: 41%; transform: rotate(var(--rotation)); }
+    .wall-card.save img { object-position: 50% 24%; }
+
+    .proof {
+      display: grid;
+      grid-template-columns: 1.04fr repeat(4, .68fr);
+      gap: 0;
+      padding: 34px 64px 40px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-strong);
+    }
+
+    .proof-intro { align-self: center; padding-right: 32px; }
+    .proof-intro strong { display: block; font-size: 17px; }
+    .proof-intro span { display: block; max-width: 250px; margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .proof article { padding: 8px 24px; border-left: 1px solid var(--line); }
+    .proof article strong { display: block; font-size: 34px; letter-spacing: -.055em; }
+    .proof article span { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+
+    .section {
+      padding: 110px 64px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-copy { max-width: 690px; }
+    .section-title {
+      margin: 0;
+      font-size: clamp(40px, 4vw, 58px);
+      line-height: 1.06;
+      letter-spacing: -.055em;
+      font-weight: 850;
+    }
+
+    .section-lead {
+      max-width: 650px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr .76fr;
+      align-items: center;
+      gap: 88px;
+    }
+
+    .origin-points {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .origin-points article {
+      min-height: 170px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      background: var(--surface);
+    }
+
+    .origin-points article:last-child { background: var(--accent-soft); }
+    .origin-points strong { display: block; font-size: 21px; }
+    .origin-points p { margin: 11px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+    .profile-frame {
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      box-shadow: 0 30px 80px var(--shadow);
+      transform: rotate(2deg);
+    }
+
+    .profile-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 4%; }
+
+    .strategy { padding-bottom: 126px; }
+    .strategy-header { max-width: 720px; }
+    .strategy-header .section-title { max-width: 560px; }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr .95fr 1.05fr;
+      align-items: stretch;
+      gap: 14px;
+      margin-top: 48px;
+    }
+
+    .method-card {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      outline: none;
+    }
+
+    .method-visual { height: 235px; overflow: hidden; background: var(--surface-strong); }
+    .method-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .method-card:nth-child(1) .method-visual img { object-position: 50% 22%; }
+    .method-card:nth-child(2) .method-visual img { object-position: 50% 27%; }
+    .method-card:nth-child(3) .method-visual img { object-position: 50% 23%; }
+    .method-card:nth-child(4) .method-visual img { object-position: 50% 23%; }
+    .method-copy { padding: 23px 22px 25px; }
+    .method-copy strong { display: block; font-size: 20px; }
+    .method-copy p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.62; }
+    .method-example { margin-top: 14px; color: var(--accent-deep); font-size: 12px; font-weight: 720; }
+
+    .brand-section { padding-top: 92px; padding-bottom: 92px; }
+    .brand-panel {
+      display: grid;
+      grid-template-columns: .84fr 1.16fr;
+      align-items: center;
+      gap: 68px;
+      padding: 44px;
+      border-radius: calc(var(--radius-card) + 6px);
+      background: var(--accent-soft);
+    }
+
+    .brand-visual {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      box-shadow: 0 26px 60px var(--shadow);
+      outline: none;
+    }
+
+    .brand-visual img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 5%; }
+    .brand-marker-list { display: grid; gap: 12px; margin-top: 34px; }
+    .brand-marker {
+      padding: 16px 18px;
+      border: 1px solid rgba(56, 89, 0, .14);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+    }
+    .brand-marker strong { display: block; font-size: 15px; }
+    .brand-marker span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+
+    .breakdown { padding-bottom: 122px; }
+    .feature-case {
+      display: grid;
+      grid-template-columns: .86fr 1.14fr;
+      gap: 70px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    .case-visual {
+      position: sticky;
+      top: 102px;
+      overflow: hidden;
+      max-height: 790px;
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      box-shadow: 0 30px 80px var(--shadow);
+    }
+
+    .case-visual img { width: 100%; height: auto; }
+    .case-copy { padding-top: 14px; }
+    .case-copy h3 { max-width: 560px; margin: 0; font-size: 38px; line-height: 1.15; letter-spacing: -.045em; }
+    .case-copy > p { max-width: 600px; margin: 20px 0 0; color: var(--muted); line-height: 1.8; }
+
+    .case-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .case-metrics article {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .case-metrics article:first-child { grid-column: 1 / -1; background: var(--accent-soft); }
+    .case-metrics strong { display: block; font-size: 27px; letter-spacing: -.04em; }
+    .case-metrics span { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+
+    .insight-list { display: grid; gap: 0; margin-top: 38px; border-top: 1px solid var(--line); }
+    .insight-hotspot {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      outline: none;
+    }
+    .insight-hotspot strong { font-size: 14px; }
+    .insight-hotspot span { color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1.18fr .82fr 1fr;
+      gap: 14px;
+      margin-top: 66px;
+    }
+
+    .note-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 460px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      outline: none;
+    }
+
+    .note-card:nth-child(1) { --tilt: -1.6deg; }
+    .note-card:nth-child(2) { --tilt: 1.8deg; }
+    .note-card:nth-child(3) { --tilt: -.8deg; }
+    .note-card img { width: 100%; height: 315px; object-fit: cover; object-position: 50% 22%; }
+    .note-card-copy { padding: 20px 22px 24px; }
+    .note-card-copy strong { display: block; font-size: 21px; }
+    .note-card-copy p { margin: 9px 0 0; color: var(--muted); font-size: 13px; line-height: 1.58; }
+    .hover-detail { margin-top: 12px; color: var(--accent-deep); font-size: 12px; font-weight: 720; }
+
+    .community-layout {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 74px;
+    }
+
+    .comment-shot {
+      overflow: hidden;
+      max-height: 760px;
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      box-shadow: 0 30px 80px var(--shadow);
+    }
+    .comment-shot img { width: 100%; height: auto; }
+    .comment-stack { display: grid; gap: 12px; margin-top: 34px; }
+    .comment-card {
+      width: 100%;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      text-align: left;
+      cursor: pointer;
+    }
+    .comment-card strong { display: block; font-size: 15px; }
+    .comment-card span { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .comment-full { display: none; }
+
+    .responsibility {
+      padding-top: 96px;
+      padding-bottom: 96px;
+      background: var(--surface-strong);
+    }
+    .responsibility-layout {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .responsibility-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .responsibility-grid article {
+      min-height: 180px;
+      padding: 24px;
+      border-radius: var(--radius-card);
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .responsibility-grid article:nth-child(2),
+    .responsibility-grid article:nth-child(3) { background: var(--accent-soft); }
+    .responsibility-grid strong { display: block; font-size: 20px; }
+    .responsibility-grid p { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+    .results {
+      padding-top: 102px;
+      padding-bottom: 110px;
+    }
+    .results-head { max-width: 680px; }
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .8fr .8fr .9fr;
+      gap: 14px;
+      margin-top: 48px;
+    }
+    .result-card {
+      min-height: 190px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      background: var(--surface);
+    }
+    .result-card:first-child { background: var(--accent-soft); }
+    .result-card strong { display: block; font-size: 34px; letter-spacing: -.055em; }
+    .result-card span { display: block; margin-top: 9px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .result-note {
+      max-width: 730px;
+      margin-top: 44px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .result-note strong { color: var(--ink); }
+
+    .reflection {
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 82px;
+      align-items: center;
+      padding: 92px 64px 104px;
+      background: var(--accent-soft);
+    }
+    .reflection h2 { max-width: 450px; margin: 0; font-size: clamp(38px, 4vw, 56px); line-height: 1.05; letter-spacing: -.055em; }
+    .reflection p { max-width: 660px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.85; }
+
+    .wall-card,
+    .method-card,
+    .note-card,
+    .profile-frame,
+    .brand-visual,
+    .comment-card,
+    .result-card,
+    .insight-hotspot {
+      transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s ease, background-color .3s ease, opacity .3s ease;
+    }
+
+    .wall-card img,
+    .method-visual img,
+    .note-card img,
+    .brand-visual img {
+      transition: transform .55s cubic-bezier(.16, 1, .3, 1), filter .4s ease;
+    }
+
+    .wall-card:hover {
+      z-index: 8;
+      transform: translateY(-14px) rotate(0deg);
+      box-shadow: 0 34px 78px rgba(57, 75, 43, .24);
+    }
+
+    .wall-card:hover img { transform: scale(1.025); }
+    .profile-frame:hover { transform: rotate(0deg) translateY(-8px); }
+
+    .method-card,
+    .note-card { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+    .method-card:hover,
+    .method-card:focus-visible,
+    .note-card:hover,
+    .note-card:focus-visible {
+      z-index: 3;
+      transform: translateY(-12px) rotate(0deg);
+      box-shadow: 0 26px 60px var(--shadow);
+      outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      outline-offset: 4px;
+    }
+
+    .method-card:hover img,
+    .method-card:focus-visible img,
+    .note-card:hover img,
+    .note-card:focus-visible img { transform: scale(1.045); }
+
+    .method-example,
+    .hover-detail { opacity: .62; transform: translateY(3px); transition: transform .35s ease, opacity .35s ease; }
+    .method-card:hover .method-example,
+    .method-card:focus-visible .method-example,
+    .note-card:hover .hover-detail,
+    .note-card:focus-visible .hover-detail { opacity: 1; transform: translateY(0); }
+
+    .brand-visual:hover,
+    .brand-visual:focus-visible {
+      transform: translateY(-8px);
+      box-shadow: 0 36px 80px var(--shadow);
+      outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      outline-offset: 4px;
+    }
+    .brand-visual:hover img,
+    .brand-visual:focus-visible img { transform: scale(1.035); filter: saturate(1.08); }
+
+    .insight-hotspot:hover,
+    .insight-hotspot:focus-visible {
+      padding-left: 14px;
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .comment-card:hover,
+    .comment-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+      box-shadow: 0 18px 40px var(--shadow);
+      outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      outline-offset: 3px;
+    }
+    .comment-card:active { transform: translateY(-2px) scale(.99); }
+    .comment-card[aria-expanded="true"] { background: var(--accent-soft); }
+    .comment-card[aria-expanded="true"] .comment-full { display: block; }
+
+    .result-card:hover { transform: translateY(-7px); box-shadow: 0 22px 50px var(--shadow); }
+
+    .reveal { opacity: 0; transform: translateY(22px); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); transition: opacity .7s ease, transform .7s cubic-bezier(.16, 1, .3, 1); }
+
+    @media (hover: none) {
+      .method-example,
+      .hover-detail { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .wall-card,
+      .method-card,
+      .note-card,
+      .profile-frame { transform: none !important; }
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 62px 38px 24px;
+      }
+      .hero-copy { max-width: 760px; }
+      .note-wall { min-height: 620px; }
+      .proof { grid-template-columns: 1fr 1fr; padding-inline: 38px; }
+      .proof-intro { grid-column: 1 / -1; padding: 0 0 22px; }
+      .proof article:nth-of-type(odd) { border-left: 0; }
+      .section { padding: 90px 38px; }
+      .origin-grid { gap: 42px; }
+      .method-grid { grid-template-columns: 1.08fr .92fr; }
+      .brand-panel { gap: 42px; }
+      .feature-case { grid-template-columns: .92fr 1.08fr; gap: 42px; }
+      .support-grid { grid-template-columns: 1.08fr .92fr; }
+      .support-grid .note-card:last-child { grid-column: 1 / -1; min-height: 380px; }
+      .support-grid .note-card:last-child img { height: 245px; }
+      .community-layout { gap: 42px; }
+      .responsibility-layout { grid-template-columns: 1fr; gap: 42px; }
+      .results-grid { grid-template-columns: 1fr 1fr; }
+      .reflection { gap: 42px; padding-inline: 38px; }
+    }
+
+    @media (max-width: 720px) {
+      .site { width: 100%; margin: 0; border-radius: 0; }
+      .nav { height: 64px; padding: 0 20px; }
+      .nav nav { gap: 0; }
+      .nav nav a:not(:last-child) { display: none; }
+      .nav nav a:last-child { padding: 8px 12px; }
+
+      .hero { display: block; min-height: 0; padding: 48px 20px 18px; }
+      h1 { font-size: clamp(36px, 11vw, 46px); line-height: 1.08; }
+      h1 span { white-space: normal; }
+      .lead { max-width: 100%; margin-top: 22px; font-size: 15px; line-height: 1.72; }
+      .note-wall { min-height: 430px; margin-top: 22px; }
+      .wall-field { inset: 36px 8px 26px 18px; }
+      .wall-card { border-width: 4px; border-radius: 18px; }
+      .wall-card.profile { left: 0; width: 44%; height: 62%; }
+      .wall-card.main { left: 25%; width: 51%; height: 78%; }
+      .wall-card.support { right: 0; top: 30%; width: 34%; height: 50%; }
+      .wall-card.save { left: 7%; width: 36%; height: 38%; }
+
+      .proof { grid-template-columns: 1fr 1fr; padding: 28px 20px 34px; }
+      .proof-intro { padding-bottom: 18px; }
+      .proof article { padding: 16px 8px 12px; border-left: 0; border-top: 1px solid var(--line); }
+      .proof article strong { font-size: 28px; }
+
+      .section { padding: 72px 20px; }
+      .section-title { font-size: clamp(34px, 10vw, 44px); line-height: 1.08; }
+      .section-lead { margin-top: 18px; font-size: 15px; line-height: 1.72; }
+
+      .origin-grid,
+      .brand-panel,
+      .feature-case,
+      .community-layout,
+      .responsibility-layout,
+      .reflection { grid-template-columns: 1fr; }
+
+      .origin-grid { gap: 38px; }
+      .origin-points { grid-template-columns: 1fr; }
+      .origin-points article { min-height: 0; }
+      .profile-frame { width: min(78vw, 340px); margin: 0 auto; }
+
+      .strategy { padding-bottom: 82px; }
+      .method-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 34px; }
+      .method-card { min-height: 330px; border-radius: 18px; }
+      .method-visual { height: 155px; }
+      .method-copy { padding: 17px 15px 19px; }
+      .method-copy strong { font-size: 17px; }
+      .method-copy p { font-size: 12px; }
+
+      .brand-section { padding-top: 60px; padding-bottom: 60px; }
+      .brand-panel { gap: 34px; padding: 22px; }
+      .brand-visual { width: min(100%, 340px); margin: 0 auto; }
+
+      .feature-case { gap: 32px; margin-top: 34px; }
+      .case-visual { position: relative; top: auto; max-height: 650px; }
+      .case-copy { padding-top: 0; }
+      .case-copy h3 { font-size: 30px; }
+      .case-metrics { gap: 9px; }
+      .case-metrics article { padding: 16px; }
+      .case-metrics strong { font-size: 23px; }
+      .insight-hotspot { grid-template-columns: 96px 1fr; gap: 14px; }
+
+      .support-grid {
+        display: flex;
+        gap: 12px;
+        margin-inline: -20px;
+        padding: 10px 20px 28px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+      .support-grid::-webkit-scrollbar { display: none; }
+      .support-grid .note-card,
+      .support-grid .note-card:last-child {
+        flex: 0 0 78vw;
+        min-height: 420px;
+        scroll-snap-align: center;
+      }
+      .support-grid .note-card img,
+      .support-grid .note-card:last-child img { height: 280px; }
+
+      .community-layout { gap: 36px; }
+      .comment-shot { max-height: 610px; }
+      .comment-card { padding: 18px; }
+
+      .responsibility-grid { gap: 10px; }
+      .responsibility-grid article { min-height: 150px; padding: 18px; }
+
+      .results-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 34px; }
+      .result-card { min-height: 150px; padding: 20px; }
+      .result-card strong { font-size: 28px; }
+
+      .reflection { gap: 26px; padding: 68px 20px 78px; }
+      .reflection h2 { font-size: 40px; }
+      .reflection p { font-size: 15px; line-height: 1.75; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f1f3ee;
+        --muted: #adb4aa;
+        --paper: #17191a;
+        --white: #f7f9f4;
+        --surface: #222522;
+        --surface-strong: #1c201b;
+        --line: rgba(241, 243, 238, .12);
+        --lime: #b9ed4a;
+        --lime-soft: #2c381c;
+        --lime-deep: #d7f792;
+        --accent: var(--lime);
+        --accent-deep: var(--lime-deep);
+        --accent-soft: var(--lime-soft);
+        --shadow: rgba(4, 7, 5, .36);
+      }
+      body { background: #0e110f; }
+      .reflection p { color: #bdc5b8; }
+    }
+  
+    .deep-read { padding: 32px; border: 1px solid var(--line); border-radius: 18px; margin: 24px 0; }
+    .deep-read h3 { margin: 0 0 12px; font-size: 23px; line-height: 1.4; }
+    .deep-read p, .deep-read li { font-size: 15px; line-height: 1.85; }
+    .deep-read p:last-child { margin-bottom: 0; }
+    .deep-read summary { cursor: pointer; font-size: 17px; font-weight: 750; line-height: 1.7; padding: 8px 0; }
+    .deep-read summary:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+    .deep-read details + details { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .deep-read .reading-note { font-size: 13px; opacity: .8; }
+    .deep-read a { text-decoration: underline; text-underline-offset: 4px; }
+    .case-return { padding: 24px; text-align: center; }
+    .case-return a { display: inline-block; padding: 12px 20px; border: 1px solid currentColor; border-radius: 999px; color: inherit; text-decoration: none; }
+    @media(max-width: 640px) { .deep-read { padding: 22px; } }
+</style>
+<link rel="stylesheet" href="meme-art-preview.css">
+</head>
+<body>
+  <div class="site">
+    <header class="nav">
+      <a class="brand" href="portfolio-yangcong-draft.html">Elena_Fu · 内容运营作品集</a>
+      <nav aria-label="项目页导航">
+        <a href="#strategy">内容方法</a>
+        <a href="#breakdown">爆款拆解</a>
+        <a href="#results">传播结果</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">品牌自有垂类内容IP</p>
+          <h1 id="pageTitle">
+            <span>用法学生共鸣</span>
+            <span>打开品牌公域流量</span>
+          </h1>
+          <p class="lead">在公司内部账号矩阵计划下，我独立从0搭建并运营「法考meme」，用轻量内容获取公域触达，并自然融入厚大教材与课程产品。</p>
+        </div>
+
+        <div class="note-wall" aria-label="法考meme真实内容墙">
+          <div class="wall-field"></div>
+          <figure class="wall-card profile"><img src="./fakao-meme-profile.png" alt="法考meme账号主页与累计赞藏数据" fetchpriority="high"></figure>
+          <figure class="wall-card main meme-art-frame"><a class="meme-art-preview" href="./fakao-meme-358k.png" data-lightbox aria-haspopup="dialog" data-caption="医学生与法学生 · 完整发布记录" aria-label="查看医学生与法学生作品的完整发布记录"><img src="./fakao-meme-358k.png" alt="紫绿两栏中的医学生与法学生身份对照" width="1320" height="2868" fetchpriority="high"></a></figure>
+          <figure class="wall-card support"><img src="./fakao-meme-352k.png" alt="单篇35.2万浏览的法学生梗图内容"></figure>
+          <figure class="wall-card save"><img src="./fakao-meme-save.png" alt="单篇5万浏览与高收藏内容"></figure>
+        </div>
+      </section>
+
+      <section class="proof" aria-label="账号核心结果">
+        <div class="proof-intro"><strong>从0搭建与运营</strong><span>约2025.05—至今 · 冷启动阶段即出现多篇高传播内容</span></div>
+        <article aria-label="32篇内容"><strong data-count="32" data-format="plain" data-final="32">32</strong><span>篇内容</span></article>
+        <article aria-label="4万+累计赞藏"><strong data-count="40000" data-format="wan" data-final="4万+">4万+</strong><span>累计赞藏</span></article>
+        <article aria-label="35.8万单篇最高浏览"><strong data-count="358000" data-format="wan" data-final="35.8万">35.8万</strong><span>单篇最高浏览</span></article>
+        <article aria-label="5,950单篇最高分享"><strong data-count="5950" data-format="comma" data-final="5,950">5,950</strong><span>单篇最高分享</span></article>
+      </section>
+
+      <section class="section" id="origin" aria-labelledby="originTitle">
+        <div class="origin-grid">
+          <div class="section-copy">
+            <h2 class="section-title" id="originTitle">从矩阵任务到独立内容IP</h2>
+            <p class="section-lead">公司启动内部账号矩阵计划，希望通过更多轻量账号拓展公域触点。我从0创建「法考meme」，独立确定名称、内容定位与表达风格，并完成全部内容生产。</p>
+            <div class="origin-points">
+              <article><strong>内容目标</strong><p>先让法学生愿意看、愿意转发和讨论，再在浏览过程中自然接触厚大品牌与产品。</p></article>
+              <article><strong>账号定位</strong><p>不依赖固定人物人设，成为懂法学生情绪的meme账号。</p></article>
+            </div>
+          </div>
+          <figure class="profile-frame"><img src="./fakao-meme-profile.png" alt="法考meme账号主页与头像视觉"></figure>
+        </div>
+      </section>
+
+      <section class="section strategy" id="strategy" aria-labelledby="strategyTitle">
+        <div class="strategy-header">
+          <h2 class="section-title" id="strategyTitle">共鸣先于热点</h2>
+          <p class="section-lead">选题不只判断一个话题是否热门，更重要的是它能否映射法学生的学习压力、考试焦虑、专业黑话与身份认同。</p>
+        </div>
+
+        <div class="method-grid">
+          <article class="method-card" tabindex="0">
+            <div class="method-visual"><img src="./fakao-meme-context.png" alt="将网络话题转化为法学生语境的内容" loading="lazy"></div>
+            <div class="method-copy"><strong>热点捕捉</strong><p>从全网话题、流行梗与法学生日常中寻找具有传播潜力的素材。</p><div class="method-example">先判断能否引发身份共鸣</div></div>
+          </article>
+          <article class="method-card" tabindex="0">
+            <div class="method-visual"><img src="./fakao-meme-copy.png" alt="结合中国法学教育语境改写的文案" loading="lazy"></div>
+            <div class="method-copy"><strong>法学改写</strong><p>结合中国法学教育与法考语境重新创作，不直接搬运其他国家的法律内容。</p><div class="method-example">把形式转化为本土内容</div></div>
+          </article>
+          <article class="method-card" tabindex="0">
+            <div class="method-visual"><img src="./fakao-meme-emotion.png" alt="低门槛法学生情绪表情包内容" loading="lazy"></div>
+            <div class="method-copy"><strong>低门槛表达</strong><p>让用户在很短时间内看懂笑点，不用先理解复杂法律知识。</p><div class="method-example">先看懂 再转发</div></div>
+          </article>
+          <article class="method-card" tabindex="0">
+            <div class="method-visual"><img src="./fakao-meme-exam.png" alt="具有讨论空间的法考学习痛点内容" loading="lazy"></div>
+            <div class="method-copy"><strong>讨论空间</strong><p>不过度解释内容，让用户能够接梗、补充经历并继续创作。</p><div class="method-example">互动由内容自然发生</div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section brand-section" id="brand" aria-labelledby="brandTitle">
+        <div class="brand-panel">
+          <figure class="brand-visual" tabindex="0"><img src="./fakao-meme-profile.png" alt="头像中手持厚大教材的品牌植入细节" loading="lazy"></figure>
+          <div class="section-copy">
+            <h2 class="section-title" id="brandTitle">让产品成为内容的一部分</h2>
+            <p class="section-lead">头像直接使用手持厚大教材的形象，教材成为账号长期视觉识别。具体笔记继续将教材、课程信息与品牌元素放入梗图和内容场景。</p>
+            <div class="brand-marker-list">
+              <div class="brand-marker"><strong>头像视觉资产</strong><span>账号头像使用手持厚大教材的形象，保留可识别的品牌线索。</span></div>
+              <div class="brand-marker"><strong>内容原生露出</strong><span>将教材与课程信息放入与笑点和内容场景相关的位置。</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section breakdown" id="breakdown" aria-labelledby="breakdownTitle">
+        <div class="section-copy">
+          <h2 class="section-title" id="breakdownTitle">35.8万浏览背后的身份共鸣</h2>
+          <p class="section-lead">代表内容以医学生与法学生为身份对照，用极低的理解门槛呈现两个专业群体的共同情绪。</p>
+        </div>
+
+        <div class="feature-case">
+          <figure class="case-visual meme-art-frame"><a class="meme-art-preview" href="./fakao-meme-358k.png" data-lightbox aria-haspopup="dialog" data-caption="医学生与法学生 · 完整发布记录" aria-label="查看医学生与法学生作品的完整发布记录"><img src="./fakao-meme-358k.png" alt="紫绿两栏中的医学生与法学生身份对照" width="1320" height="2868" loading="lazy"></a></figure>
+          <div class="case-copy">
+            <h3>一眼看懂身份 一步进入讨论</h3>
+            <p>明确的身份标签让用户迅速选择立场，简单的视觉结构方便理解和转发，开放式表达则为评论区留下了接梗空间。</p>
+            <div class="case-metrics">
+              <article><strong>35.8万</strong><span>浏览</span></article>
+              <article><strong>8,904</strong><span>点赞</span></article>
+              <article><strong>1,105</strong><span>收藏</span></article>
+              <article><strong>5,623</strong><span>评论</span></article>
+              <article><strong>5,950</strong><span>分享</span></article>
+            </div>
+            <div class="insight-list">
+              <div class="insight-hotspot" tabindex="0"><strong>身份对照</strong><span>法学生可以立刻确认自己在内容中的位置。</span></div>
+              <div class="insight-hotspot" tabindex="0"><strong>理解门槛</strong><span>视觉关系简单，不依赖复杂背景信息。</span></div>
+              <div class="insight-hotspot" tabindex="0"><strong>分享动机</strong><span>用户可以直接把内容转给同专业朋友。</span></div>
+              <div class="insight-hotspot" tabindex="0"><strong>评论空间</strong><span>内容没有替用户说完，为接梗留出位置。</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="support-grid" aria-label="多篇高传播内容">
+          <article class="note-card" tabindex="0">
+            <img src="./fakao-meme-352k.png" alt="35.2万浏览的法学生身份梗图" loading="lazy">
+            <div class="note-card-copy"><strong>35.2万浏览</strong><p>通过身份关系与反差表达制造共鸣。</p><div class="hover-detail">7,010点赞 561评论</div></div>
+          </article>
+          <article class="note-card" tabindex="0">
+            <img src="./fakao-meme-72k.png" alt="7.2万浏览的法律学习情绪内容" loading="lazy">
+            <div class="note-card-copy"><strong>7.2万浏览</strong><p>将通用情绪转化为法律学习语境。</p><div class="hover-detail">7,851点赞 2,096分享</div></div>
+          </article>
+          <article class="note-card" tabindex="0">
+            <img src="./fakao-meme-save.png" alt="5万浏览的法学生抽象文案内容" loading="lazy">
+            <div class="note-card-copy"><strong>5万浏览</strong><p>围绕法学生抽象表达形成较高收藏。</p><div class="hover-detail">2,426点赞 2,173收藏</div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="community" aria-labelledby="communityTitle">
+        <div class="community-layout">
+          <figure class="comment-shot"><img src="./fakao-meme-comments.png" alt="另一篇笔记下的作者补充文案与用户长评论截图" loading="lazy"></figure>
+          <div class="section-copy">
+            <h2 class="section-title" id="communityTitle">讨论从内容自然发生</h2>
+            <p class="section-lead">以下是另一篇笔记的评论区样本：上方是作者补充的七条文案，下方是用户的长篇二创，分别展示内容延展和社区反馈。</p>
+            <div class="comment-stack">
+              <button class="comment-card" type="button" aria-expanded="false"><strong>作者补充文案</strong><span>我用七个理由延展“法学生像法棍”的笑点</span><span class="comment-full">我在评论区补充“法学生像法棍的七个理由”，把一个谐音梗延展为学习、职业和生活场景。</span></button>
+              <button class="comment-card" type="button" aria-expanded="false"><strong>用户长评二创</strong><span>另一位用户写出完整的法律世家故事</span><span class="comment-full">用户另以“法律世家”为主题创作长篇评论，延续了法学生身份与专业梗的表达。</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="section" id="editorial-judgement" aria-labelledby="judgement-title">
+        <div class="section-copy"><h2 class="section-title" id="judgement-title">把共鸣拆到文案里</h2>
+        <p class="section-lead">以“决战抽象之巅”为例，把成品里的表达选择、可见反馈和品牌作用分别讲清楚。</p></div>
+        <div class="deep-read">
+          <details open><summary>用户为什么愿意参与</summary>
+          <p>封面只放“医学生”和“法学生”两组身份，正文用“谁更命苦”留下讨论入口。用户不必先学会一个法律知识点，就能代入自己的学习经历，或把内容转给同专业朋友。</p>
+          <p>这里的洞察是专业群体的身份认同与学习压力。两个身份的对照，让日常情绪有了一个容易表达的出口。</p></details>
+          <details><summary>文案怎样给评论留位置</summary>
+          <p>“决战抽象之巅”给出夸张的情绪，封面负责让人认出自己，正文再留一个开放问题。内容没有替用户完成全部回答，评论区可以继续补充经历和专业梗。</p>
+          </details>
+          <details><summary>品牌出现在哪里</summary>
+          <p>这篇内容中，可直接看到的品牌线索是手持厚大教材的账号头像。主要画面承担共鸣表达，账号视觉承担品牌识别。教材与课程的进一步植入见本页其他作品。</p>
+          <p>这类内容的主要任务是吸引法学生参与讨论，并通过账号头像与品牌内容建立识别。</p></details>
+          <details><summary>结果支持了什么判断</summary>
+          <p>代表作获得35.8万浏览、5,623条评论和5,950次分享；其他题材也分别获得35.2万和7.2万浏览。</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section responsibility" aria-labelledby="responsibilityTitle">
+        <div class="responsibility-layout">
+          <div class="section-copy">
+            <h2 class="section-title" id="responsibilityTitle">独立完成从0到1</h2>
+            <p class="section-lead">我自约2025年5月起运营该账号，与其他工作穿插进行，独立完成内容创作与发布；冷启动阶段便有多篇内容获得较高浏览。</p>
+          </div>
+          <div class="responsibility-grid">
+            <article><strong>账号定位</strong><p>账号命名 内容方向 视觉风格</p></article>
+            <article><strong>内容创作</strong><p>选题策划 文案撰写 图片与视频制作</p></article>
+            <article><strong>发布运营</strong><p>内容发布 评论互动 节奏调整</p></article>
+            <article><strong>商业表达</strong><p>教材露出 课程植入 品牌识别</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section results" id="results" aria-labelledby="resultsTitle">
+        <div class="results-head">
+          <h2 class="section-title" id="resultsTitle">多篇内容获得浏览与互动</h2>
+          <p class="section-lead">代表内容分别获得35.8万、35.2万和7.2万浏览，题材涵盖专业身份、学习压力与日常情绪。</p>
+        </div>
+        <div class="results-grid">
+          <article class="result-card"><strong>4万+</strong><span>账号累计赞藏</span></article>
+          <article class="result-card"><strong>32</strong><span>累计发布内容</span></article>
+          <article class="result-card"><strong>35.8万</strong><span>单篇最高浏览</span></article>
+          <article class="result-card"><strong>5,950</strong><span>单篇最高分享</span></article>
+        </div>
+        <p class="result-note"><strong>成果边界</strong> 本项目记录的成果包括内容浏览、赞藏、评论与分享；教材和课程信息以内容露出的形式呈现，销售转化尚无对应统计。</p>
+      </section>
+
+      <section class="reflection" aria-labelledby="reflectionTitle">
+        <h2 id="reflectionTitle">共鸣驱动的内容方法</h2>
+        <p>我会先判断热梗能否与法学生的经历结合，再决定是否改编。围绕学习压力、专业身份和日常情绪组织内容，并在合适的位置融入品牌信息，是这类账号的主要创作思路。</p>
+      </section>
+    </main>
+  </div>
+  <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('.comment-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const expanded = card.getAttribute('aria-expanded') === 'true';
+        card.setAttribute('aria-expanded', String(!expanded));
+      });
+    });
+
+    function formatCount(value, format) {
+      if (format === 'comma') return Math.round(value).toLocaleString('en-US');
+      if (format === 'wan') {
+        const wan = value / 10000;
+        return `${Number.isInteger(wan) ? wan : wan.toFixed(1)}万`;
+      }
+      return String(Math.round(value));
+    }
+
+    function animateCount(node) {
+      if (node.dataset.animated === 'true') return;
+      node.dataset.animated = 'true';
+      const target = Number(node.dataset.count);
+      const finalLabel = node.dataset.final;
+      if (reduceMotion) {
+        node.textContent = finalLabel;
+        return;
+      }
+      const start = performance.now();
+      const duration = 900;
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        node.textContent = formatCount(target * eased, node.dataset.format);
+        if (progress < 1) requestAnimationFrame(tick);
+        else node.textContent = finalLabel;
+      };
+      requestAnimationFrame(tick);
+    }
+
+    const revealTargets = document.querySelectorAll('.section, .proof, .reflection');
+    revealTargets.forEach((node) => node.classList.add('reveal'));
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        entry.target.querySelectorAll('[data-count]').forEach(animateCount);
+        if (entry.target.matches('[data-count]')) animateCount(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.18 });
+
+    revealTargets.forEach((node) => revealObserver.observe(node));
+    document.querySelectorAll('[data-count]').forEach((node) => {
+      if (!node.closest('.proof')) revealObserver.observe(node);
+    });
+  </script>
+<footer class="case-return"><a href="portfolio-yangcong-draft.html">← 返回作品集</a></footer>
+<dialog class="meme-image-dialog" id="image-viewer" aria-labelledby="image-viewer-title"><div class="dialog-bar"><h2 id="image-viewer-title">作品原图</h2><button class="dialog-close" type="button" autofocus>关闭</button></div><div class="dialog-media"><img id="image-viewer-image" alt=""></div></dialog><script src="ip-case.js"></script>
+</body>
+</html>

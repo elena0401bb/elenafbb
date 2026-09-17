@@ -1,0 +1,46 @@
+/* Show the artwork region; the unmodified screenshot remains the link target. */
+.meme-art-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1320 / 1761;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #6254ff;
+  cursor: zoom-in;
+}
+.meme-art-preview img,
+.wall-card.main .meme-art-preview img {
+  position: absolute;
+  left: 0;
+  top: -20.10221465%;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  object-fit: initial;
+  object-position: initial;
+}
+.wall-card.main.meme-art-frame { height: auto; }
+.case-visual.meme-art-frame { max-height: none; }
+.meme-art-frame .meme-art-preview { border-radius: 0; }
+.meme-art-preview:focus-visible { outline: 3px solid var(--accent-deep, #527800); outline-offset: -4px; }
+
+.meme-image-dialog {
+  width: min(1000px, calc(100vw - 32px));
+  max-height: 92dvh;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface, #fff);
+  color: var(--ink);
+}
+.meme-image-dialog::backdrop { background: rgba(15,18,15,.8); }
+.meme-image-dialog .dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.meme-image-dialog .dialog-bar h2 { margin: 0; font-size: 15px; line-height: 1.5; }
+.meme-image-dialog .dialog-close { flex-shrink: 0; min-height: 44px; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; font-size: 13px; cursor: pointer; }
+.meme-image-dialog .dialog-media { padding: 16px; }
+.meme-image-dialog .dialog-media img { display: block; width: 100%; max-height: calc(92dvh - 115px); height: auto; object-fit: contain; }

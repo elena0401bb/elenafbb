@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Elena_Fu负责小红书KOC内容供给与商业投流的项目案例，分别呈现规模化内容落地和销售转化链路。">
+  <title>内容供给与商业投流｜Elena_Fu</title>
+  <style>
+    :root {
+      --ink: #17191d;
+      --paper: #f4f6f2;
+      --surface: #ffffff;
+      --acid: #b8ef43;
+      --acid-soft: #ebf5cf;
+      --deep: #385900;
+      --muted: #68706d;
+      --line: #d8ded7;
+      --radius: 18px;
+      --max: 1280px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+    button, a { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 3px solid rgba(56, 89, 0, .38); outline-offset: 4px; }
+    .shell { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 66px;
+      border-bottom: 1px solid rgba(23, 25, 29, .1);
+      background: rgba(244, 246, 242, .92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .topbar-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { font-size: 14px; font-weight: 900; white-space: nowrap; }
+    .nav { display: flex; align-items: center; gap: 22px; color: #505753; font-size: 12px; white-space: nowrap; }
+    .nav a:not(.back-link) { padding: 24px 0 20px; border-bottom: 2px solid transparent; }
+    .nav a:not(.back-link):hover { border-color: var(--deep); }
+    .back-link {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 800;
+      transition: background .2s ease, color .2s ease;
+    }
+    .back-link:hover { background: var(--acid); color: var(--ink); }
+
+    .hero { min-height: calc(100dvh - 66px); display: grid; align-items: center; padding: 54px 0; }
+    .hero-grid { display: grid; grid-template-columns: minmax(360px, .88fr) minmax(560px, 1.12fr); gap: clamp(52px, 7vw, 96px); align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--deep); font-size: 13px; font-weight: 900; }
+    .eyebrow::before { content: ""; width: 28px; height: 3px; background: var(--acid); }
+    .hero h1 { margin: 24px 0 0; font-size: clamp(48px, 5.8vw, 74px); line-height: .95; letter-spacing: -.065em; }
+    .hero h1 span { display: block; }
+    .hero h1 span:last-child { margin-top: 12px; color: var(--deep); }
+    .hero-copy { max-width: 500px; margin: 28px 0 0; color: var(--muted); font-size: 15px; line-height: 1.82; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .button:first-child { background: var(--ink); color: #fff; }
+    .button:hover { background: var(--acid); color: var(--ink); transform: translateY(-2px); }
+    .button:active { transform: translateY(1px); }
+
+    .track-board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .track-panel {
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: transform .3s cubic-bezier(.16, 1, .3, 1), border-color .3s ease, background .3s ease;
+    }
+    .track-panel[data-track="koc"] { background: var(--acid); }
+    .track-panel small { color: var(--deep); font-size: 11px; font-weight: 900; }
+    .track-panel h2 { max-width: 8ch; margin: 18px 0 0; font-size: clamp(28px, 3.2vw, 42px); line-height: 1; letter-spacing: -.055em; }
+    .track-panel p { margin: 18px 0 0; color: #4f5753; font-size: 12px; line-height: 1.72; }
+    .panel-number strong { display: block; font-size: clamp(48px, 6vw, 74px); line-height: .85; letter-spacing: -.07em; }
+    .panel-number span { display: block; margin-top: 12px; color: #4f5753; font-size: 11px; }
+    .track-panel[data-active="true"] { border-color: var(--deep); transform: translateY(-7px); }
+    @media (hover: hover) {
+      .track-panel:hover { border-color: var(--deep); transform: translateY(-7px); }
+    }
+
+    .metric-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .metric { padding: 28px; border-right: 1px solid var(--line); }
+    .metric:first-child { padding-left: 0; }
+    .metric:last-child { border-right: 0; }
+    .metric strong { display: block; font-size: clamp(30px, 3.8vw, 48px); line-height: 1; letter-spacing: -.06em; }
+    .metric span { display: block; margin-top: 10px; color: var(--muted); font-size: 11px; }
+    .metric em { color: var(--deep); font-style: normal; font-weight: 900; }
+
+    .section { padding: clamp(84px, 10vw, 126px) 0; border-bottom: 1px solid var(--line); }
+    .section-heading { max-width: 820px; margin: 0; font-size: clamp(38px, 4.8vw, 62px); line-height: .98; letter-spacing: -.06em; }
+    .section-intro { max-width: 650px; margin: 20px 0 46px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+
+    .koc-layout { display: grid; grid-template-columns: .62fr 1.38fr; gap: clamp(46px, 8vw, 110px); align-items: start; }
+    .track-summary { position: sticky; top: 104px; }
+    .track-summary strong { display: block; font-size: clamp(76px, 9vw, 124px); line-height: .78; letter-spacing: -.08em; }
+    .track-summary span { display: block; margin-top: 20px; color: var(--deep); font-size: 13px; font-weight: 900; }
+    .track-summary p { max-width: 340px; margin: 20px 0 0; color: var(--muted); font-size: 13px; line-height: 1.78; }
+    .workflow { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); }
+    .workflow-item { min-height: 180px; padding: 26px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .2s ease, transform .2s ease; }
+    .workflow-item:nth-child(even) { border-right: 0; }
+    .workflow-item b { color: var(--deep); font-size: 11px; }
+    .workflow-item h3 { margin: 34px 0 0; font-size: 20px; }
+    .workflow-item p { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    @media (hover: hover) {
+      .workflow-item:hover { background: var(--acid-soft); transform: translateY(-3px); }
+    }
+
+    .evidence-band { margin-top: 44px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px; }
+    .evidence { min-height: 220px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .evidence:first-child { background: var(--ink); color: #fff; }
+    .evidence h3 { margin: 0; font-size: 23px; letter-spacing: -.035em; }
+    .evidence p { margin: 18px 0 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .evidence:first-child p { color: #b9c0bb; }
+    .source-fields { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+    .source-fields span { padding: 8px 10px; border: 1px solid currentColor; border-radius: 999px; font-size: 10px; font-weight: 800; }
+
+    .paid-stage { display: grid; grid-template-columns: 1fr 1.18fr; gap: clamp(40px, 7vw, 90px); align-items: center; }
+    .paid-copy p { max-width: 530px; margin: 22px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .paid-figures { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 34px; }
+    .paid-figure { min-height: 180px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: background .2s ease, transform .2s ease; }
+    .paid-figure strong { display: block; font-size: clamp(42px, 5vw, 66px); line-height: .9; letter-spacing: -.065em; }
+    .paid-figure span { display: block; margin-top: 16px; color: var(--muted); font-size: 11px; }
+    @media (hover: hover) {
+      .paid-figure:hover { background: var(--acid-soft); transform: translateY(-4px); }
+    }
+    .paid-flow { border-top: 1px solid var(--ink); }
+    .paid-step { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .paid-step strong { font-size: 13px; }
+    .paid-step p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+    .separation { background: var(--acid); }
+    .separation-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: clamp(34px, 6vw, 74px); align-items: stretch; }
+    .separation-rule { background: rgba(23, 25, 29, .22); }
+    .separation article { min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; }
+    .separation h2 { margin: 0; font-size: clamp(34px, 4vw, 52px); line-height: 1; letter-spacing: -.055em; }
+    .separation p { max-width: 470px; margin: 20px 0 0; color: #445133; font-size: 13px; line-height: 1.78; }
+    .separation strong { display: block; margin-top: 48px; font-size: 18px; }
+
+    .scope { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(50px, 8vw, 110px); }
+    .scope-copy p { max-width: 390px; margin: 20px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .scope-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .scope-item { min-height: 190px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: transform .2s ease, border-color .2s ease; }
+    .scope-item h3 { margin: 0; font-size: 20px; }
+    .scope-item p { margin: 38px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    @media (hover: hover) {
+      .scope-item:hover { border-color: var(--deep); transform: translateY(-4px); }
+    }
+
+    .closing { padding: clamp(90px, 12vw, 148px) 0; text-align: center; }
+    .closing h2 { margin: 0; font-size: clamp(42px, 6vw, 72px); line-height: .95; letter-spacing: -.065em; }
+    .closing p { max-width: 600px; margin: 22px auto 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+    @media (max-width: 1000px) {
+      .hero { min-height: auto; }
+      .hero-grid, .koc-layout, .paid-stage, .scope { grid-template-columns: 1fr; }
+      .track-summary { position: static; }
+      .track-summary p { max-width: 620px; }
+    }
+
+    @media (max-width: 760px) {
+      .shell { width: min(calc(100% - 30px), var(--max)); }
+      .topbar { height: 58px; }
+      .nav a:not(.back-link) { display: none; }
+      .back-link { min-height: 34px; padding: 0 12px; }
+      .hero { padding: 50px 0 40px; }
+      .hero h1 { font-size: clamp(42px, 13vw, 56px); }
+      .track-board, .workflow, .evidence-band, .paid-figures, .scope-list { grid-template-columns: 1fr; }
+      .track-panel { min-height: 310px; }
+      .metric-grid { grid-template-columns: 1fr 1fr; }
+      .metric { padding: 22px 16px; border-bottom: 1px solid var(--line); }
+      .metric:first-child { padding-left: 16px; }
+      .metric:nth-child(2) { border-right: 0; }
+      .metric:nth-child(3), .metric:nth-child(4) { border-bottom: 0; }
+      .workflow-item { border-right: 0; }
+      .separation-grid { grid-template-columns: 1fr; }
+      .separation-rule { width: 100%; height: 1px; }
+      .separation article { min-height: 240px; }
+      .paid-step { grid-template-columns: 100px 1fr; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #eff2ed;
+        --paper: #151814;
+        --surface: #1d211c;
+        --acid-soft: #28321d;
+        --deep: #b8ef43;
+        --muted: #a8b0a9;
+        --line: #353c35;
+      }
+      .topbar { background: rgba(21, 24, 20, .92); }
+      .nav { color: #c4cbc4; }
+      .back-link { background: #eff2ed; color: #17191d; border-color: #eff2ed; }
+      .track-panel[data-track="koc"], .separation { color: #17191d; }
+      .track-panel[data-track="koc"] small, .track-panel[data-track="koc"] p { color: #385900; }
+      .metric-strip { background: var(--surface); }
+      .separation p { color: #445133; }
+      .evidence:first-child { background: #0d0f0c; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  
+    .deep-read { padding: 32px; border: 1px solid var(--line); border-radius: 18px; margin: 24px 0; }
+    .deep-read h3 { margin: 0 0 12px; font-size: 23px; line-height: 1.4; }
+    .deep-read p, .deep-read li { font-size: 15px; line-height: 1.85; }
+    .deep-read p:last-child { margin-bottom: 0; }
+    .deep-read summary { cursor: pointer; font-size: 17px; font-weight: 750; line-height: 1.7; padding: 8px 0; }
+    .deep-read summary:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+    .deep-read details + details { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .deep-read .reading-note { font-size: 13px; opacity: .8; }
+    .deep-read a { text-decoration: underline; text-underline-offset: 4px; }
+    .case-return { padding: 24px; text-align: center; }
+    .case-return a { display: inline-block; padding: 12px 20px; border: 1px solid currentColor; border-radius: 999px; color: inherit; text-decoration: none; }
+    @media(max-width: 640px) { .deep-read { padding: 22px; } }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top">Elena_Fu｜内容运营作品集</a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#koc">KOC内容供给</a>
+        <a href="#paid">商业投流</a>
+        <a href="#method">两条业务线</a>
+        <a href="#scope">我的职责</a>
+        <a class="back-link" href="portfolio-yangcong-draft.html">← 返回作品集</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <span class="eyebrow">内容供给与商业投流</span>
+          <h1><span>从外部内容供给</span><span>到商业转化</span></h1>
+          <p class="hero-copy">我同时负责外部内容供给与商业投流，分别解决规模化触达和转化效率。</p>
+          <div class="hero-actions">
+            <a class="button" href="#koc" data-track-button="koc">查看内容供给</a>
+            <a class="button" href="#paid" data-track-button="paid">查看商业投流</a>
+          </div>
+        </div>
+
+        <div class="track-board" aria-label="两条增长业务线">
+          <article class="track-panel" data-track="koc" data-active="true">
+            <div>
+              <small>KOC内容供给</small>
+              <h2>规模化获得公域内容</h2>
+              <p>通过人选筛选、任务分配和审核回收，让外部内容稳定落地。</p>
+            </div>
+            <div class="panel-number"><strong>约2,000篇</strong><span>累计落地内容</span></div>
+          </article>
+          <article class="track-panel" data-track="paid" data-active="false">
+            <div>
+              <small>商业投流</small>
+              <h2>把内容继续推向转化</h2>
+              <p>围绕素材、排期、私信、线索和成交数据持续复盘。</p>
+            </div>
+            <div class="panel-number"><strong>ROI约1.2</strong><span>销售口径结果</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="metric-strip" aria-label="项目核心数据">
+      <div class="shell metric-grid">
+        <div class="metric"><strong>约2,000篇</strong><span><em>KOC</em> 累计内容供给</span></div>
+        <div class="metric"><strong>约2万元</strong><span><em>KOC</em> 按篇结算投入</span></div>
+        <div class="metric"><strong>约12万元</strong><span><em>投流</em> 商业投放预算</span></div>
+        <div class="metric"><strong>ROI约1.2</strong><span><em>投流</em> 销售转化结果</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="koc">
+      <div class="shell">
+        <h2 class="section-heading">让外部内容供给能够持续落地</h2>
+        <p class="section-intro">重点不是一次找多少人，而是把选人、发题、交付、审核和结算做成稳定流程。</p>
+        <div class="koc-layout">
+          <div class="track-summary">
+            <strong>2,000</strong>
+            <span>累计落地笔记约2,000篇</span>
+            <p>按篇结算投入约2万元。数据只归入KOC内容供给，不与商业投流预算和ROI混算。</p>
+          </div>
+          <div>
+            <div class="workflow" aria-label="KOC内容供给流程">
+              <article class="workflow-item"><b>定义任务</b><h3>方案制定</h3><p>明确传播目标、内容方向、交付数量和合规边界。</p></article>
+              <article class="workflow-item"><b>匹配人选</b><h3>账号筛选</h3><p>根据账号画像、内容风格和受众相关性筛选合作账号。</p></article>
+              <article class="workflow-item"><b>推进执行</b><h3>任务分配</h3><p>发送Brief与时间节点，跟进发布状态和素材回收。</p></article>
+              <article class="workflow-item"><b>完善交付</b><h3>素材制作</h3><p>准备产品信息、参考角度和可复用的内容素材。</p></article>
+              <article class="workflow-item"><b>控制质量</b><h3>笔记审核</h3><p>检查信息准确度、品牌露出、表达自然度和平台合规。</p></article>
+              <article class="workflow-item"><b>完成闭环</b><h3>费用结算</h3><p>核对发布结果、回收链接，并按照交付完成结算。</p></article>
+            </div>
+            <div class="evidence-band">
+              <article class="evidence">
+                <h3>执行台账记录的是每一次真实交付</h3>
+                <p>原始台账包含日期、内容类型、数量、金额、备注、沟通凭证和交易凭证，用于核对进度与结算。</p>
+                <div class="source-fields"><span>日期</span><span>数量</span><span>金额</span><span>审核备注</span><span>沟通凭证</span></div>
+              </article>
+              <article class="evidence">
+                <h3>内容标准同时覆盖表达与合规</h3>
+                <p>发布前检查标题、正文、图片、品牌露出和风险词，发布后回收链接并记录修改反馈。</p>
+                <div class="source-fields"><span>选题角度</span><span>品牌露出</span><span>平台规范</span></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="paid">
+      <div class="shell paid-stage">
+        <div class="paid-copy">
+          <h2 class="section-heading">商业投流看的是素材到成交</h2>
+          <p>投流不是单纯加预算。我负责服务商对接、素材筛选、内容排期和发布协同，也跟进私信承接、线索去向与成交反馈。</p>
+          <div class="paid-figures">
+            <div class="paid-figure"><strong>约12万元</strong><span>商业投放预算</span></div>
+            <div class="paid-figure"><strong>ROI约1.2</strong><span>最终销售口径</span></div>
+          </div>
+        </div>
+        <div class="paid-flow" aria-label="商业投流执行链路">
+          <article class="paid-step"><strong>服务商对接</strong><p>同步目标、预算和阶段策略，确保外部执行与内部业务节奏一致。</p></article>
+          <article class="paid-step"><strong>素材筛选</strong><p>结合内容表现和转化目标筛选素材，减少无效消耗。</p></article>
+          <article class="paid-step"><strong>内容排期</strong><p>统筹账号、发布时间与素材版本，保证投放节奏可追踪。</p></article>
+          <article class="paid-step"><strong>私信承接</strong><p>跟进评论与私信入口，确认用户咨询可以被及时接住。</p></article>
+          <article class="paid-step"><strong>线索跟进</strong><p>按照来源、计划、单元和创意字段回溯线索质量。</p></article>
+          <article class="paid-step"><strong>数据复盘</strong><p>结合成交金额、订单数、成交人数和客单价评估结果。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section separation" id="method">
+      <div class="shell separation-grid">
+        <article>
+          <div><h2>内容供给是一条独立业务线</h2><p>它解决内容数量、发布效率和公域覆盖问题，核心投入是按篇结算成本。</p></div>
+          <strong>约2,000篇内容与约2万元投入</strong>
+        </article>
+        <div class="separation-rule" aria-hidden="true"></div>
+        <article>
+          <div><h2>商业投流是另一条独立业务线</h2><p>它解决付费放大、线索承接和销售转化问题，核心投入是投放预算。</p></div>
+          <strong>约12万元预算与ROI约1.2</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="scope">
+      <div class="shell scope">
+        <div class="scope-copy">
+          <h2 class="section-heading">我负责的不是单一发布动作</h2>
+          <p>从外部内容管理到商业转化协同，我承担的是跨角色、跨节点的完整执行链路。</p>
+        </div>
+        <div class="scope-list">
+          <article class="scope-item"><h3>策略拆解</h3><p>把增长目标拆成选人、内容、素材、节奏和数据口径。</p></article>
+          <article class="scope-item"><h3>项目推进</h3><p>协调KOC、服务商和内部团队，持续跟进交付状态。</p></article>
+          <article class="scope-item"><h3>质量控制</h3><p>审核内容与素材，处理修改反馈并控制平台风险。</p></article>
+          <article class="scope-item"><h3>结果回收</h3><p>回收发布链接、线索和成交反馈，为下一轮调整提供依据。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="shell">
+        <h2>内容规模与转化效率<br>需要两套方法</h2>
+        <p>我能够把两条业务线分别做清楚，也能在同一增长目标下协调内容、投放和业务承接。</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const panels = [...document.querySelectorAll(".track-panel")];
+    const buttons = [...document.querySelectorAll("[data-track-button]")];
+
+    function activateTrack(track) {
+      panels.forEach((panel) => {
+        panel.dataset.active = String(panel.dataset.track === track);
+      });
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("mouseenter", () => activateTrack(button.dataset.trackButton));
+      button.addEventListener("focus", () => activateTrack(button.dataset.trackButton));
+    });
+  </script>
+<footer class="case-return"><a href="portfolio-yangcong-draft.html">← 返回作品集</a></footer>
+</body>
+</html>

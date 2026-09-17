@@ -1,0 +1,40 @@
+/* Scoped to the Guoer graphic examples; reuse the portfolio palette. */
+.guoer-editorial { min-width: 0; }
+.guoer-editorial + .guoer-editorial { margin-top: 62px; padding-top: 42px; border-top: 1px solid var(--line); }
+.guoer-work-heading { display: grid; grid-template-columns: minmax(220px,.8fr) minmax(0,1.2fr); gap: 38px; align-items: start; margin-bottom: 26px; }
+.guoer-work-heading h3 { font-size: 26px; line-height: 1.35; letter-spacing: -.025em; }
+.guoer-work-heading p { max-width: 650px; color: var(--muted); font-size: 15px; line-height: 1.85; }
+.guoer-work-date { display: block; margin-bottom: 10px; color: var(--lime-deep); font-size: 12px; font-weight: 650; }
+.guoer-gallery-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
+.guoer-gallery-bar > span { color: var(--muted); font-size: 12px; }
+.guoer-gallery-actions { display: flex; gap: 8px; }
+.guoer-gallery-actions[hidden] { display: none; }
+.guoer-gallery-actions button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); cursor: pointer; font-size: 20px; }
+.guoer-gallery-actions button:disabled { opacity: .35; cursor: default; }
+.guoer-strip { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 40px) / 3); gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; padding: 5px 4px 18px; scrollbar-width: thin; scrollbar-color: var(--lime-deep) var(--surface-2); }
+.guoer-strip figure { min-width: 0; scroll-snap-align: start; }
+.guoer-poster { display: block; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 16px; background: var(--media-paper); border: 1px solid var(--line); }
+.guoer-poster img { width: var(--source-width,100%); max-width: none; height: auto; }
+.guoer-strip figcaption,.guoer-reveal figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.guoer-reveal { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; max-width: 850px; margin-inline: auto; }
+.guoer-source { margin-top: 14px; }
+@media(hover:hover) {
+ .guoer-poster { transition: transform .2s ease,box-shadow .2s ease; }
+ .guoer-poster:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(23,25,29,.09); }
+ .guoer-gallery-actions button:hover:not(:disabled) { background: var(--lime); color: #17191d; }
+}
+@media(max-width:1000px) {
+ .guoer-strip { grid-auto-columns: calc((100% - 20px) / 2); }
+ .guoer-work-heading { grid-template-columns: 1fr; gap: 14px; }
+}
+@media(max-width:600px) {
+ .guoer-strip { grid-auto-columns: 86%; gap: 14px; }
+ .guoer-reveal { grid-template-columns: 1fr; gap: 26px; max-width: 380px; }
+ .guoer-work-heading h3 { font-size: 23px; }
+ .guoer-work-heading p { font-size: 14px; }
+ .guoer-editorial + .guoer-editorial { margin-top: 42px; padding-top: 32px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .guoer-poster { transition: none; }
+ .guoer-poster:hover { transform: none; }
+}

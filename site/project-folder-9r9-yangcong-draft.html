@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elena_Fu作品集 · 9.9 元拉新项目</title>
+  <style>
+    :root {
+      --ink: #17191d;
+      --muted: #687078;
+      --paper: #f4f6f2;
+      --white: #fcfdfb;
+      --line: rgba(23, 25, 29, .11);
+      --lime: #b9ed4a;
+      --lime-soft: #dcf7a5;
+      --lime-deep: #385900;
+      --orange: #ff6b36;
+      --blue: #2878e8;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #dfe3de;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a { font: inherit; }
+    button { cursor: pointer; }
+
+    .site {
+      width: min(1510px, calc(100% - 28px));
+      margin: 18px auto 72px;
+      overflow: hidden;
+      border: 1px solid rgba(23, 25, 29, .08);
+      border-radius: 28px;
+      background: var(--paper);
+      box-shadow: 0 30px 90px rgba(39, 48, 45, .14);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 42px;
+      border-bottom: 1px solid rgba(23, 25, 29, .08);
+      background: rgba(248, 250, 246, .84);
+      backdrop-filter: blur(24px) saturate(150%);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 820;
+      letter-spacing: -.035em;
+    }
+
+    .brand-mark {
+      width: 13px;
+      height: 13px;
+      border-radius: 4px;
+      background: var(--lime);
+      box-shadow: inset 0 0 0 1px rgba(23, 25, 29, .08);
+      transform: rotate(10deg);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #5b626a;
+      font-size: 13px;
+    }
+
+    .nav-links a { color: inherit; text-decoration: none; }
+    .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 720;
+    }
+
+    .hero {
+      min-height: 740px;
+      display: grid;
+      grid-template-columns: .87fr 1.13fr;
+      align-items: center;
+      padding: 52px 46px 46px 66px;
+      overflow: hidden;
+    }
+
+    .copy {
+      position: relative;
+      z-index: 10;
+      max-width: 630px;
+      padding: 22px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      color: var(--lime-deep);
+      font-size: 13px;
+      font-weight: 760;
+      letter-spacing: .03em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--lime-deep);
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(52px, 4.2vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -.06em;
+      font-weight: 850;
+    }
+
+    .title-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .title-line + .title-line { margin-top: 8px; }
+    h1 .title-accent { color: var(--lime-deep); }
+    h1 .title-accent { margin-left: .16em; }
+
+    .lead {
+      max-width: 535px;
+      margin: 28px 0 30px;
+      color: #5f666e;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .actions { display: flex; align-items: center; gap: 12px; }
+    .primary, .secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 760;
+    }
+    .primary { border: 0; background: var(--ink); color: #fff; }
+    .primary .arrow { transition: transform .25s ease; }
+    .primary:hover .arrow { transform: translateX(3px); }
+    .secondary { border: 1px solid var(--line); background: rgba(255,255,255,.68); color: var(--ink); text-decoration: none; }
+
+    .mini-proof {
+      display: flex;
+      gap: 28px;
+      margin-top: 38px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .mini-proof strong {
+      display: block;
+      font-size: 27px;
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+    .mini-proof span { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; }
+
+    .folder-stage {
+      position: relative;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1300px;
+      isolation: isolate;
+    }
+
+    .stage-field {
+      position: absolute;
+      width: 640px;
+      height: 560px;
+      border-radius: 50%;
+      background: var(--lime-soft);
+      opacity: .72;
+      filter: blur(1px);
+      transform: translate(24px, 8px);
+    }
+
+    .folder {
+      position: relative;
+      z-index: 5;
+      width: 650px;
+      height: 520px;
+      transform-style: preserve-3d;
+      transform: rotateX(2deg) rotateY(-7deg) rotateZ(-1deg);
+      transition: transform .7s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .folder-stage:hover .folder,
+    .folder-stage.is-open .folder {
+      transform: rotateX(0) rotateY(-2deg) translateY(-8px);
+    }
+
+    .folder-back {
+      position: absolute;
+      left: 62px;
+      right: 26px;
+      bottom: 64px;
+      height: 350px;
+      border: 1px solid rgba(48, 76, 0, .18);
+      border-radius: 28px 28px 38px 38px;
+      background: #d7f792;
+      box-shadow: 0 34px 60px rgba(65, 81, 48, .15);
+    }
+
+    .folder-tab {
+      position: absolute;
+      top: -48px;
+      left: 0;
+      width: 255px;
+      height: 78px;
+      padding: 18px 22px;
+      border: 1px solid rgba(48, 76, 0, .18);
+      border-bottom: 0;
+      border-radius: 24px 34px 0 0;
+      background: #d7f792;
+      color: var(--lime-deep);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .folder-tab small { display: block; margin-top: 5px; color: rgba(56, 89, 0, .63); font-size: 10px; font-weight: 650; }
+
+    .asset {
+      position: absolute;
+      z-index: 3;
+      bottom: 175px;
+      overflow: hidden;
+      border: 7px solid rgba(255,255,255,.95);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 20px 42px rgba(30, 37, 35, .16);
+      transform-origin: center bottom;
+      transition: transform .72s cubic-bezier(.16, 1, .3, 1), bottom .72s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .asset img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .asset.poster { left: 100px; width: 178px; height: 294px; transform: rotate(-9deg) translateY(48px); }
+    .asset.launch { left: 230px; width: 300px; height: 238px; transform: rotate(-1deg) translateY(62px); }
+    .asset.ugc { right: 24px; width: 230px; height: 274px; transform: rotate(8deg) translateY(55px); }
+
+    .folder-stage:hover .asset.poster,
+    .folder-stage.is-open .asset.poster { transform: rotate(-13deg) translate(-18px, -36px); }
+    .folder-stage:hover .asset.launch,
+    .folder-stage.is-open .asset.launch { transform: rotate(-1deg) translateY(-62px); }
+    .folder-stage:hover .asset.ugc,
+    .folder-stage.is-open .asset.ugc { transform: rotate(12deg) translate(16px, -38px); }
+
+    .folder-front {
+      position: absolute;
+      z-index: 12;
+      left: 35px;
+      right: 0;
+      bottom: 28px;
+      height: 260px;
+      padding: 38px 42px;
+      overflow: hidden;
+      border: 1px solid rgba(48, 76, 0, .2);
+      border-radius: 30px 30px 42px 42px;
+      background: var(--lime);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.62), 0 38px 55px rgba(58, 76, 38, .22);
+    }
+
+    .folder-front::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 330px;
+      height: 330px;
+      border: 1px solid rgba(56, 89, 0, .13);
+      border-radius: 50%;
+    }
+
+    .folder-label {
+      position: relative;
+      z-index: 2;
+      width: 350px;
+    }
+    .folder-label .kicker { color: rgba(33, 52, 0, .68); font-size: 12px; font-weight: 750; }
+    .folder-label h2 { margin: 10px 0 8px; font-size: 42px; line-height: 1.02; letter-spacing: -.055em; }
+    .folder-label p { margin: 0; color: rgba(33, 52, 0, .74); font-size: 13px; line-height: 1.55; }
+
+    .folder-chip {
+      position: absolute;
+      right: 34px;
+      bottom: 32px;
+      z-index: 3;
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(39, 60, 0, .13);
+      background: rgba(255,255,255,.48);
+      color: var(--lime-deep);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
+    .avatar-shell {
+      position: absolute;
+      z-index: 18;
+      right: -18px;
+      bottom: 34px;
+      width: 252px;
+      height: 338px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.78);
+      border-radius: 138px 138px 38px 38px;
+      background: #f7f8f4;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 28px 50px rgba(42, 53, 39, .18);
+      transform: rotate(3deg);
+      transition: transform .55s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .folder-stage:hover .avatar-shell,
+    .folder-stage.is-open .avatar-shell { transform: rotate(1deg) translateY(-7px); }
+    .avatar-shell img {
+      width: 118%;
+      height: 118%;
+      margin-left: -9%;
+      margin-top: -4%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .emoji {
+      position: absolute;
+      z-index: 24;
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border: 1px solid rgba(255,255,255,.82);
+      border-radius: 17px;
+      background: rgba(255,255,255,.76);
+      box-shadow: 0 17px 34px rgba(42, 52, 46, .13), inset 0 1px 0 rgba(255,255,255,.9);
+      backdrop-filter: blur(18px);
+      font-size: 27px;
+    }
+    .emoji.pen { left: 25px; top: 182px; transform: rotate(-9deg); }
+    .emoji.box { right: 10px; top: 142px; transform: rotate(8deg); }
+    .emoji.spark { left: 74px; bottom: 24px; transform: rotate(5deg); }
+
+    .context {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 78px;
+      padding: 104px 64px 96px;
+      border-top: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .context-copy { max-width: 610px; }
+    .section-kicker {
+      color: var(--lime-deep);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .05em;
+    }
+
+    .context h2 {
+      max-width: 560px;
+      margin: 16px 0 30px;
+      font-size: clamp(42px, 3.5vw, 52px);
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+
+    .context-copy p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .context-panel {
+      align-self: center;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .context-row {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 20px;
+      padding: 25px 6px;
+      border-top: 1px solid var(--line);
+    }
+
+    .context-row:first-child { border-top: 0; }
+    .context-row b {
+      color: var(--lime-deep);
+      font-size: 13px;
+      letter-spacing: .04em;
+    }
+    .context-row strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 20px;
+      letter-spacing: -.025em;
+    }
+    .context-row p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .context-result {
+      margin-top: 30px;
+      padding: 24px 26px;
+      border-radius: 18px;
+      background: var(--lime-soft);
+      color: #2d440b;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .context-result strong { color: var(--ink); }
+
+    .story {
+      border-top: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .story-head {
+      display: block;
+      padding: 104px 64px 64px;
+    }
+
+    .story h2 {
+      max-width: 620px;
+      margin: 0;
+      font-size: clamp(42px, 3.7vw, 54px);
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+    .story-intro { max-width: 760px; margin-top: 26px; }
+    .story-intro p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+
+    .strategy {
+      padding: 0 64px 82px;
+    }
+
+    .strategy-board {
+      position: relative;
+      overflow: hidden;
+      padding: 44px 44px 40px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--paper);
+    }
+
+    .strategy-board::after {
+      content: "";
+      position: absolute;
+      right: -105px;
+      top: -128px;
+      width: 330px;
+      height: 330px;
+      border: 1px solid rgba(56, 89, 0, .11);
+      border-radius: 50%;
+    }
+
+    .strategy-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 34px;
+    }
+
+    .strategy-top h3 {
+      max-width: 650px;
+      margin: 8px 0 0;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -.045em;
+    }
+
+    .strategy-top p {
+      max-width: 400px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .strategy-rail {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1.08fr 1.28fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .phase {
+      min-height: 175px;
+      padding: 30px 32px 12px 0;
+      border-right: 1px solid var(--line);
+    }
+
+    .phase + .phase { padding-left: 32px; }
+    .phase:last-child { padding-right: 0; border-right: 0; }
+    .phase-index {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 22px;
+      border-radius: 10px;
+      background: var(--lime);
+      color: var(--lime-deep);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .phase strong { display: block; margin-bottom: 8px; font-size: 19px; letter-spacing: -.025em; }
+    .phase p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+    .ip-collab {
+      padding: 0 64px 82px;
+    }
+
+    .ip-collab-inner {
+      padding: 44px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #eef1ec;
+    }
+
+    .ip-collab-head {
+      display: block;
+      padding-bottom: 34px;
+    }
+
+    .ip-collab h3 {
+      max-width: 760px;
+      margin: 9px 0 0;
+      font-size: 38px;
+      line-height: 1;
+      letter-spacing: -.045em;
+    }
+
+    .ip-collab-head p {
+      max-width: 780px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .ip-evidence {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+    }
+
+    .ip-post {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--white);
+    }
+
+    .ip-post-visual {
+      height: 360px;
+      overflow: hidden;
+      background: #17191d;
+    }
+
+    .ip-post img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .ip-post:first-child img { object-position: 58% top; }
+
+    .ip-post-copy {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      padding: 22px 24px 24px;
+    }
+
+    .ip-post-copy small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--lime-deep);
+      font-size: 11px;
+      font-weight: 820;
+      letter-spacing: .04em;
+    }
+
+    .ip-post-copy strong {
+      display: block;
+      font-size: 18px;
+      letter-spacing: -.025em;
+    }
+
+    .ip-post-copy p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .post-stats {
+      align-self: center;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+      text-align: right;
+    }
+
+    .post-stats b { color: var(--ink); font-size: 15px; }
+
+    .interaction-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .interaction-note span {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background: var(--lime);
+      font-size: 17px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      padding: 0 64px 92px;
+    }
+
+    .flow-main {
+      min-height: 480px;
+      padding: 42px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--paper);
+    }
+
+    .flow-label { color: var(--muted); font-size: 12px; font-weight: 760; letter-spacing: .04em; }
+    .steps { margin-top: 34px; }
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      min-height: 82px;
+      border-top: 1px solid var(--line);
+    }
+    .step:first-child { border-top: 0; }
+    .step .icon { font-size: 26px; }
+    .step strong { display: block; margin-bottom: 5px; font-size: 18px; letter-spacing: -.025em; }
+    .step span { color: var(--muted); font-size: 13px; }
+    .step b { color: var(--lime-deep); font-size: 12px; }
+
+    .evidence {
+      display: grid;
+      grid-template-rows: 1.08fr .92fr;
+      gap: 18px;
+    }
+
+    .evidence figure {
+      position: relative;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #eef1ec;
+    }
+    .evidence img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: left top; }
+    .evidence figure:last-child img { object-position: center 40%; }
+    .evidence figcaption {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.88);
+      color: var(--ink);
+      box-shadow: 0 8px 20px rgba(23,25,29,.12);
+      font-size: 11px;
+      font-weight: 760;
+      backdrop-filter: blur(12px);
+    }
+
+    .report-card {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      padding: 20px 20px 18px;
+      background: #edf0ed;
+    }
+
+    .report-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: #353a3f;
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .report-avatar {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .report-head small { margin-left: auto; color: #879096; font-size: 10px; font-weight: 620; }
+    .report-time { margin: 4px 0 14px; color: #9aa0a5; text-align: center; font-size: 10px; }
+
+    .bubble {
+      max-width: 88%;
+      margin-bottom: 10px;
+      padding: 11px 13px;
+      border-radius: 7px;
+      font-size: 12px;
+      line-height: 1.55;
+      box-shadow: 0 1px 0 rgba(23,25,29,.05);
+    }
+
+    .bubble.mine { margin-left: auto; background: #95ec69; }
+    .bubble.reply { background: #fff; }
+
+    .report-data {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .report-data span {
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      color: var(--lime-deep);
+      font-size: 10px;
+      font-weight: 820;
+    }
+
+    .result-band {
+      display: grid;
+      grid-template-columns: 1.15fr repeat(3, .62fr);
+      align-items: end;
+      gap: 28px;
+      padding: 72px 64px 78px;
+      border-top: 1px solid var(--line);
+      background: var(--lime-soft);
+    }
+    .result-band h3 { max-width: 390px; margin: 0; font-size: 32px; line-height: 1; letter-spacing: -.045em; }
+    .result-band h3 small { display: block; margin-top: 10px; color: rgba(40, 55, 18, .68); font-size: 13px; font-weight: 650; line-height: 1.35; letter-spacing: 0; }
+    .result-band strong { display: block; font-size: 39px; letter-spacing: -.065em; }
+    .result-band span { display: block; margin-top: 8px; color: rgba(40, 55, 18, .68); font-size: 12px; }
+
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; padding: 60px 34px 20px; }
+      .copy { max-width: 760px; }
+      .folder-stage { min-height: 650px; transform: scale(.92); }
+      .context { grid-template-columns: 1fr; gap: 42px; padding: 84px 34px; }
+      .story-head { padding: 84px 34px 50px; }
+      .strategy { padding: 0 34px 70px; }
+      .ip-collab { padding: 0 34px 70px; }
+      .flow { grid-template-columns: 1fr; padding: 0 34px 70px; }
+      .evidence { grid-template-columns: 1fr 1fr; grid-template-rows: 320px; }
+      .result-band { grid-template-columns: 1.2fr repeat(3, .6fr); padding: 62px 34px; }
+    }
+
+    @media (max-width: 720px) {
+      .site { width: 100%; margin: 0; border-radius: 0; }
+      .nav { padding: 0 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { display: block; padding: 42px 20px 12px; }
+      .copy { width: 100%; min-width: 0; }
+      h1 { font-size: 34px; line-height: 1.06; letter-spacing: -.05em; }
+      .title-line { white-space: nowrap; }
+      .title-line + .title-line { margin-top: 5px; }
+      .lead { font-size: 15px; }
+      .mini-proof { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      .folder-stage { width: 700px; min-width: 0; margin-left: 50%; transform: translateX(-50%) scale(.62); transform-origin: center; min-height: 470px; }
+      .context { padding: 70px 20px; }
+      .context h2 { font-size: 40px; }
+      .context-row { grid-template-columns: 42px 1fr; gap: 12px; }
+      .story-head { padding: 70px 20px 42px; }
+      .strategy { padding: 0 20px 54px; }
+      .strategy-board { padding: 30px 22px; }
+      .strategy-top { align-items: flex-start; flex-direction: column; }
+      .strategy-rail { grid-template-columns: 1fr; }
+      .phase, .phase + .phase { min-height: auto; padding: 24px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .phase:last-child { border-bottom: 0; }
+      .ip-collab { padding: 0 20px 54px; }
+      .ip-collab-inner { padding: 30px 22px; }
+      .ip-collab h3 { font-size: 30px; }
+      .ip-evidence { grid-template-columns: 1fr; }
+      .ip-post-visual { height: 260px; }
+      .ip-post-copy { grid-template-columns: 1fr; gap: 14px; }
+      .post-stats { text-align: left; }
+      .flow { padding: 0 20px 54px; }
+      .flow-main { padding: 28px 22px; }
+      .step { grid-template-columns: 46px 1fr; }
+      .step b { display: none; }
+      .evidence { grid-template-columns: 1fr; grid-template-rows: 260px 260px; }
+      .result-band { grid-template-columns: 1fr 1fr; gap: 30px 18px; padding: 50px 20px; }
+      .result-band h3 { grid-column: 1 / -1; }
+    }
+  
+    .deep-read { padding: 32px; border: 1px solid var(--line); border-radius: 18px; margin: 24px 0; }
+    .deep-read h3 { margin: 0 0 12px; font-size: 23px; line-height: 1.4; }
+    .deep-read p, .deep-read li { font-size: 15px; line-height: 1.85; }
+    .deep-read p:last-child { margin-bottom: 0; }
+    .deep-read summary { cursor: pointer; font-size: 17px; font-weight: 750; line-height: 1.7; padding: 8px 0; }
+    .deep-read summary:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+    .deep-read details + details { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .deep-read .reading-note { font-size: 13px; opacity: .8; }
+    .deep-read a { text-decoration: underline; text-underline-offset: 4px; }
+    .case-return { padding: 24px; text-align: center; }
+    .case-return a { display: inline-block; padding: 12px 20px; border: 1px solid currentColor; border-radius: 999px; color: inherit; text-decoration: none; }
+    @media(max-width: 640px) { .deep-read { padding: 22px; } }
+</style>
+</head>
+<body>
+  <div class="site">
+    <header class="nav">
+      <div class="brand"><span class="brand-mark"></span>Elena_Fu · 内容运营作品集</div>
+      <nav class="nav-links">
+        <a href="#story">项目故事</a>
+        <a href="#results">数据结果</a>
+        <a class="nav-cta" href="#story">查看案例</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="copy">
+          <div class="eyebrow"><span>公域拉新</span><span>商品运营</span><span>订单协同</span></div>
+          <h1>
+            <span class="title-line">一次低门槛拉新活动</span>
+            <span class="title-line">撬动头部名师<span class="title-accent">IP增长</span></span>
+          </h1>
+          <p class="lead">从宣传策划、近100篇素人推广笔记和老师IP账号协同，到商品上架、订单导入及售后处理。我负责的是从内容分发到业务承接的完整链路。</p>
+          <div class="actions">
+            <button class="primary" id="openFolder">打开项目文件夹 <span class="arrow">↗</span></button>
+            <a class="secondary" href="#story">阅读项目故事</a>
+          </div>
+          <div class="mini-proof" aria-label="项目核心数据">
+            <div><strong>9952</strong><span>累计成交订单</span></div>
+            <div><strong>3500+</strong><span>上线5天小红书售出</span></div>
+            <div><strong>85%+</strong><span>阶段新学员占比</span></div>
+          </div>
+        </div>
+
+        <div class="folder-stage" id="folderStage" aria-label="9.9元拉新项目文件夹视觉">
+          <div class="stage-field"></div>
+          <div class="emoji pen">✍️</div>
+          <div class="emoji box">📦</div>
+          <div class="emoji spark">✨</div>
+
+          <div class="folder">
+            <div class="folder-back">
+              <div class="folder-tab">PROJECT ARCHIVE<small>内容增长与销售运营</small></div>
+            </div>
+            <div class="asset poster"><img src="./zhangxiang-hero.jpg" alt="张翔民法理论卷9.9元活动海报" /></div>
+            <div class="asset launch"><img src="./zhangxiang-launch.png" alt="小红书活动首发内容与互动数据" /></div>
+            <div class="asset ugc"><img src="./zhangxiang-ugc.png" alt="晒单激励活动内容" /></div>
+            <div class="folder-front">
+              <div class="folder-label">
+                <div class="kicker">拉新活动运营闭环</div>
+                <h2>9.9元民法<br>理论卷项目</h2>
+                <p>宣传 · 账号协同 · 上架 · 订单 · 售后</p>
+              </div>
+              <div class="folder-chip">近1万单</div>
+            </div>
+            <div class="avatar-shell"><img src="./fbb-avatar-denim-transparent-v2.png" alt="Elena_Fu的3D emoji形象" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="context" aria-labelledby="contextTitle">
+        <div class="context-copy">
+          <div class="section-kicker">项目背景与增长目标</div>
+          <h2 id="contextTitle">名师IP增长</h2>
+          <p>项目希望把张翔老师已有的教学影响力，转化为新用户对教材与学习服务的体验。内容既要说明产品价值，也要降低用户第一次购买的决策门槛。</p>
+          <p>与此同时，厚大希望突破对既有官方粉丝和招生私域流量的依赖，从外部社交平台寻找新的增长空间。本次活动以9.9元民法理论卷、直播带学和学习群服务作为低门槛入口，重点触达尚未使用厚大法考APP、也未进入招生老师私域的潜在法考用户。</p>
+          <div class="context-result"><strong>结果验证：</strong>活动累计成交近1万单，上线第5天小红书渠道售出3500+本，阶段新学员占比达到85%+。其中，3500+本及85%+对应上线第5天，累计订单对应项目整体。</div>
+        </div>
+
+        <div class="context-panel" aria-label="项目三层增长目标">
+          <div class="context-row">
+            <b>01</b>
+            <div><strong>补充外部新增流量</strong><p>聚焦小红书等公域平台，为厚大扩大法考备考用户池。</p></div>
+          </div>
+          <div class="context-row">
+            <b>02</b>
+            <div><strong>放大名师IP转化</strong><p>将张翔老师的IP影响力转化为新增用户与实际成交。</p></div>
+          </div>
+          <div class="context-row">
+            <b>03</b>
+            <div><strong>形成增长联动</strong><p>通过公域引流、用户沉淀与销售转化，支持新用户体验教材与后续学习服务。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="story" id="story">
+        <div class="story-head">
+          <h2>全链路转化</h2>
+          <div class="story-intro">
+            <p>活动以小红书等公域平台获取新用户。我主导宣传节奏与内容规划，负责素人推广笔记的选题、写作和审核，协调3至4名组内成员累计推进近100篇内容，同时协同老师IP账号完成发布，并继续承接商品上架、订单导入及售后处理。</p>
+          </div>
+        </div>
+
+        <div class="strategy">
+          <div class="strategy-board">
+            <div class="strategy-top">
+              <div>
+                <div class="flow-label">宣传策划</div>
+                <h3>内容策略</h3>
+              </div>
+              <p>围绕“低门槛实物资料＋直播带学”的核心卖点，将素人内容与老师IP账号协同起来，形成上线引爆、矩阵铺量和节点促转三段节奏。</p>
+            </div>
+            <div class="strategy-rail">
+              <div class="phase">
+                <div class="phase-index">01</div>
+                <strong>上线引爆</strong>
+                <p>集中传递9.9元、包邮、带学服务等核心利益点，快速建立活动认知。</p>
+              </div>
+              <div class="phase">
+                <div class="phase-index">02</div>
+                <strong>内容矩阵铺量</strong>
+                <p>统筹近100篇素人笔记，并协同老师的小红书等IP账号发布相关内容，扩大覆盖。</p>
+              </div>
+              <div class="phase">
+                <div class="phase-index">03</div>
+                <strong>节点转化加速</strong>
+                <p>结合晒单激励、趣味内容、倒计时与返场提醒，持续承接讨论和购买需求。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ip-collab">
+          <div class="ip-collab-inner">
+            <div class="ip-collab-head">
+              <div>
+                <div class="flow-label">发布协同</div>
+                <h3>老师账号协同</h3>
+              </div>
+              <p>我协同厚大张翔账号在关键节点发布活动内容：由老师本人出镜完成活动背书，再以内容讲解回应用户对新版资料的关注，并通过互动贴承接评论区讨论。老师账号不是简单转发，而是参与活动从认知建立到转化推进的全过程。</p>
+            </div>
+
+            <div class="ip-evidence">
+              <article class="ip-post">
+                <div class="ip-post-visual"><img src="./teacher-ip-launch.png" alt="厚大张翔账号发布9.9元民法理论卷活动内容" /></div>
+                <div class="ip-post-copy">
+                  <div><small>老师出镜 · 活动说明</small><strong>用名师信任降低首次购买门槛</strong><p>老师本人介绍理论卷、配套课程与学习目标，明确9.9元活动入口。</p></div>
+                  <div class="post-stats"><b>135</b> 赞<br><b>9</b> 收藏<br><b>22</b> 评论</div>
+                </div>
+              </article>
+
+              <article class="ip-post">
+                <div class="ip-post-visual"><img src="./teacher-ip-explain.png" alt="厚大张翔账号讲解2026民法理论卷调整" /></div>
+                <div class="ip-post-copy">
+                  <div><small>产品内容 · 价值讲解</small><strong>从价格传播延伸到内容释疑</strong><p>围绕新版理论卷的调整展开讲解，强化资料价值与专业感知。</p></div>
+                  <div class="post-stats"><b>71</b> 赞<br><b>12</b> 收藏<br><b>4</b> 评论</div>
+                </div>
+              </article>
+            </div>
+
+            <div class="interaction-note"><span>💬</span><p>通过互动帖承接评论区反馈与用户讨论，配合产品讲解内容回应用户关注的问题。</p></div>
+          </div>
+        </div>
+
+        <div class="flow">
+          <div class="flow-main">
+            <div class="flow-label">我负责的完整链路</div>
+            <div class="steps">
+              <div class="step"><div class="icon">✍️</div><div><strong>素人内容矩阵</strong><span>选题、撰写、终稿审核与成员协调</span></div><b>近100篇</b></div>
+              <div class="step"><div class="icon">📣</div><div><strong>老师IP账号协同</strong><span>协调老师的小红书等账号发布活动内容</span></div><b>多账号</b></div>
+              <div class="step"><div class="icon">🛒</div><div><strong>商品上架承接</strong><span>完成活动商品配置与销售入口落地</span></div><b>9.9元</b></div>
+              <div class="step"><div class="icon">📥</div><div><strong>订单导入协同</strong><span>导入厚大信息管理系统并协调人员处理</span></div><b>近1万单</b></div>
+              <div class="step"><div class="icon">💬</div><div><strong>售后问题闭环</strong><span>地址、物流、漏发、异常订单与退款</span></div><b>5类问题</b></div>
+            </div>
+          </div>
+
+          <div class="evidence">
+            <figure>
+              <img src="./zhangxiang-countdown.png" alt="活动倒计时内容和用户反馈" />
+              <figcaption>节点内容与用户反馈</figcaption>
+            </figure>
+            <figure>
+              <div class="report-card" aria-label="根据真实沟通整理的阶段汇报界面">
+                <div class="report-head">
+                  <div class="report-avatar">汇</div>
+                  <span>项目阶段汇报</span>
+                  <small>沟通记录还原</small>
+                </div>
+                <div class="report-time">2025年11月12日 13:36</div>
+                <div class="bubble mine">今天是张翔老师理论卷9.9元活动上线第5天。小红书渠道已经售出3500+本，后台显示至少85%以上为新学员。</div>
+                <div class="bubble reply">有这个比例那就挺好的！再接再厉。</div>
+                <div class="report-data"><span>3500+本</span><span>85%+新学员</span></div>
+              </div>
+              <figcaption>上线第5天阶段复盘</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="result-band" id="results">
+          <h3>项目沉淀<small>可复用的公域拉新方法</small></h3>
+          <div><strong>402</strong><span>代表笔记点赞</span></div>
+          <div><strong>221</strong><span>代表笔记收藏</span></div>
+          <div><strong>248</strong><span>代表笔记评论</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const button = document.getElementById('openFolder');
+    const stage = document.getElementById('folderStage');
+
+    button.addEventListener('click', () => {
+      stage.classList.toggle('is-open');
+      button.firstChild.textContent = stage.classList.contains('is-open') ? '收起项目文件夹 ' : '打开项目文件夹 ';
+    });
+  </script>
+<footer class="case-return"><a href="portfolio-yangcong-draft.html">← 返回作品集</a></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+/* Series work uses the portfolio's existing black, paper and green palette. */
+.drama-section { scroll-margin-top: 90px; }
+.drama-ownership { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin: 0 0 40px; padding: 22px 0; border-block: 1px solid var(--line); }
+.drama-ownership strong { font-size: 15px; }
+.drama-ownership ol { display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; margin: 0; padding: 0; }
+.drama-ownership li { color: var(--muted); font-size: 13px; }
+.drama-ownership li + li::before { content: '→'; margin-right: 18px; color: var(--deep,var(--lime-deep)); }
+.drama-feature { display: grid; grid-template-columns: minmax(240px,.72fr) minmax(0,1.28fr); align-items: center; gap: clamp(30px,5vw,64px); }
+.drama-feature figure,.drama-romance-card figure { min-width: 0; margin: 0; }
+.drama-open { cursor: zoom-in; }
+.drama-fruit-still { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+.drama-fruit-still img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 26%; }
+.drama-feature figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.drama-label { display: block; margin-bottom: 12px; color: var(--deep,var(--lime-deep)); font-size: 12px; font-weight: 750; }
+.drama-feature h3,.drama-romance-heading h3 { margin: 0; font-size: clamp(26px,3vw,37px); line-height: 1.3; letter-spacing: -.035em; }
+.drama-feature p,.drama-romance-heading p { color: var(--muted); font-size: 15px; line-height: 1.85; margin: 18px 0; }
+.drama-episode-name { margin-top: 28px; }
+.drama-episode-name h4 { margin: 0 0 8px; font-size: 19px; line-height: 1.5; }
+.drama-episode-name span { color: var(--muted); font-size: 12px; }
+.drama-metrics { display: flex; flex-wrap: wrap; gap: 20px 28px; margin: 28px 0 20px; }
+.drama-metrics div { display: flex; flex-direction: column; gap: 8px; }
+.drama-metrics dt { order: 2; color: var(--muted); font-size: 11px; }
+.drama-metrics dd { margin: 0; font-size: 25px; line-height: 1.1; font-weight: 800; letter-spacing: -.04em; }
+.drama-metrics div:first-child dd { color: var(--deep,var(--lime-deep)); }
+.drama-text-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 5px; font-size: 13px; }
+.drama-episodes { margin-top: 40px; padding: 0 26px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+.drama-episodes > summary { min-height: 64px; padding: 22px 0; cursor: pointer; font-size: 16px; font-weight: 700; }
+.drama-episodes > summary::marker { color: var(--deep,var(--lime-deep)); }
+.drama-episodes > summary span { margin-left: 12px; font-weight: 400; color: var(--muted); font-size: 12px; }
+.drama-episode-row { display: grid; grid-template-columns: 80px minmax(0,1fr) 125px; align-items: center; gap: 24px; padding: 24px 0; border-top: 1px solid var(--line); }
+.drama-episode-number { color: var(--deep,var(--lime-deep)); font-size: 14px; font-weight: 750; }
+.drama-episode-row h4 { margin: 0 0 9px; font-size: 16px; line-height: 1.5; }
+.drama-episode-meta { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.drama-episode-data { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 10px; color: var(--muted); font-size: 12px; }
+.drama-episode-result { text-align: right; }
+.drama-episode-result strong { font-size: 25px; letter-spacing: -.035em; }
+.drama-episode-result > span { display: block; margin-top: 6px; color: var(--muted); font-size: 11px; }
+.drama-episode-result a { font-size: 12px; }
+.drama-romance { margin-top: 62px; padding-top: 46px; border-top: 1px solid var(--line); }
+.drama-romance-heading { max-width: 780px; margin-bottom: 28px; }
+.drama-romance-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px; align-items: start; }
+.drama-romance-card { min-width: 0; }
+.drama-romance-cover { display: block; overflow: hidden; border-radius: 16px; border: 1px solid var(--line); background: #fff; }
+.drama-romance-cover img { display: block; width: 100%; height: auto; }
+.drama-romance-card h4 { margin: 18px 0 10px; font-size: 19px; line-height: 1.5; }
+.drama-romance-card .drama-metrics { gap: 14px 18px; margin: 20px 0 12px; }
+.drama-romance-card .drama-metrics dd { font-size: 21px; }
+.drama-entry { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(28px,4vw,56px); align-items: center; margin-top: 30px; padding: 34px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); }
+.drama-entry h3 { margin: 0 0 16px; font-size: 32px; line-height: 1.3; letter-spacing: -.03em; }
+.drama-entry p { color: var(--muted); font-size: 15px; line-height: 1.85; }
+.drama-entry .button { margin-top: 16px; }
+.drama-entry-media { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; align-items: start; width: 100%; max-width: 520px; justify-self: end; }
+.drama-entry-media figure { min-width: 0; margin: 0; }
+.drama-entry-media a { display: block; overflow: hidden; border-radius: 14px; }
+.drama-entry-media figcaption { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.6; text-align: center; }
+.drama-entry-media img { display: block; width: 100%; height: auto; }
+.drama-entry-media .drama-fruit-still { aspect-ratio: 3 / 4; }
+.drama-entry-media .drama-fruit-still img { height: 100%; }
+.drama-entry-poster { position: relative; aspect-ratio: 3 / 4; border: 1px solid var(--line); background: #fff; }
+/* Show the original poster area (x=23, y=31, w=506, h=676) without stretching the source. */
+.drama-entry-media .drama-entry-poster img { position: absolute; left: -4.55%; top: -4.59%; width: 107.91%; max-width: none; height: auto; }
+@media(hover:hover) {
+ .drama-entry-media a,.drama-romance-cover { transition: transform .2s ease,box-shadow .2s ease; }
+ .drama-entry-media a:hover,.drama-romance-cover:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(23,25,29,.10); }
+}
+@media(max-width:900px) {
+ .drama-entry { grid-template-columns: 1fr; }
+ .drama-entry-media { max-width: 460px; margin-inline: auto; justify-self: center; }
+ .drama-romance-grid { gap: 18px; }
+ .drama-romance-card h4 { font-size: 17px; }
+}
+@media(max-width:700px) {
+ .drama-feature { grid-template-columns: 1fr; gap: 28px; }
+ .drama-feature figure { width: min(100%,380px); margin-inline: auto; }
+ .drama-romance-grid { grid-template-columns: 1fr; gap: 38px; max-width: 400px; margin-inline: auto; }
+ .drama-episode-row { grid-template-columns: 58px minmax(0,1fr); gap: 10px 16px; }
+ .drama-episode-result { grid-column: 2; text-align: left; }
+ .drama-episode-result > span { display: inline; margin-left: 6px; }
+ .drama-episode-result a { margin-left: 16px; }
+ .drama-episodes { padding-inline: 18px; }
+ .drama-episodes > summary span { display: block; margin: 9px 0 0; }
+ .drama-entry { padding: 24px; gap: 26px; }
+ .drama-entry h3 { font-size: 28px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .drama-entry-media a,.drama-romance-cover { transition: none; }
+ .drama-entry-media a:hover,.drama-romance-cover:hover { transform: none; }
+}

@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Elena_Fu的IP内容作品集：老师代表授课老师，厚厚代表厚大官号，过儿代表法考生，从三个视角展开内容策划与运营实践。"><title>内容策划与 IP 运营｜Elena_Fu作品集</title><style>
+    :root {
+      --ink: #17191d;
+      --muted: #626870;
+      --paper: #f3f5f1;
+      --surface: #fbfcf9;
+      --surface-2: #e9ede8;
+      --line: rgba(23, 25, 29, .11);
+      --lime: #b7e94a;
+      --lime-deep: #527800;
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #dde1dc;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .frame {
+      width: min(1460px, calc(100% - 28px));
+      margin: 26px auto 72px;
+      overflow: hidden;
+      border: 1px solid rgba(23, 25, 29, .08);
+      border-radius: 28px;
+      background: var(--paper);
+      box-shadow: 0 28px 90px rgba(43, 50, 56, .14);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 42px;
+      border-bottom: 1px solid rgba(23, 25, 29, .08);
+      background: rgba(247, 248, 245, .78);
+      backdrop-filter: blur(22px) saturate(150%);
+    }
+
+    .brand { font-size: 17px; font-weight: 850; letter-spacing: -0.035em; }
+    .nav-links { display: flex; gap: 26px; color: #555b63; font-size: 13px; }
+    .nav-button, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      white-space: nowrap;
+      font-weight: 760;
+    }
+    .nav-button { padding: 10px 16px; background: var(--ink); color: #f7f8f5; font-size: 13px; }
+
+    .hero {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      align-items: center;
+      padding: 44px 50px 28px 66px;
+      overflow: hidden;
+    }
+
+    .hero-copy { position: relative; z-index: 5; }
+    .hero-copy h1 {
+      max-width: 650px;
+      margin: 0;
+      font-size: clamp(58px, 6vw, 92px);
+      line-height: .98;
+      letter-spacing: -0.072em;
+    }
+    .hero-copy h1 span { color: var(--lime-deep); }
+    .hero-copy p { max-width: 480px; margin: 26px 0; color: #5f656d; font-size: 17px; line-height: 1.65; }
+    .actions { display: flex; gap: 11px; }
+    .button { padding: 14px 21px; font-size: 14px; }
+    .button.primary { background: var(--ink); color: #f8f9f6; }
+    .button.secondary { border: 1px solid rgba(23, 25, 29, .15); background: rgba(255, 255, 255, .72); }
+
+    .archive {
+      position: relative;
+      min-height: 585px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      perspective: 1100px;
+    }
+
+    .halo {
+      position: absolute;
+      width: 510px;
+      height: 510px;
+      top: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 42% 36%, rgba(220, 247, 159, .95), rgba(183, 233, 74, .5) 52%, rgba(183, 233, 74, 0) 74%);
+    }
+
+    .glass {
+      position: absolute;
+      width: 330px;
+      height: 430px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, .72);
+      background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(222, 228, 232, .2));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .82), 0 30px 70px rgba(64, 78, 43, .14);
+      backdrop-filter: blur(24px) saturate(145%);
+    }
+    .glass.back { left: 12%; top: 82px; transform: rotateY(16deg) rotateZ(-8deg); }
+    .glass.mid { right: 8%; top: 104px; transform: rotateY(-13deg) rotateZ(7deg); }
+    .glass.front { width: 420px; height: 175px; bottom: 18px; transform: rotateX(9deg); }
+
+    .avatar {
+      position: relative;
+      z-index: 8;
+      width: min(500px, 88%);
+      max-height: 575px;
+      object-fit: contain;
+      object-position: bottom;
+      filter: drop-shadow(0 26px 24px rgba(33, 42, 26, .14));
+    }
+
+    .emoji {
+      position: absolute;
+      z-index: 12;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .78);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .68);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 16px 34px rgba(43, 49, 55, .13);
+      backdrop-filter: blur(20px);
+      font-size: 29px;
+    }
+    .emoji.a { left: 7%; top: 184px; transform: rotate(-8deg); }
+    .emoji.b { right: 2%; top: 250px; transform: rotate(7deg); }
+    .emoji.c { right: 15%; bottom: 44px; transform: rotate(-4deg); }
+
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      padding: 30px 58px 42px;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, .38);
+    }
+    .proof strong { display: block; margin-bottom: 4px; font-size: 30px; letter-spacing: -0.05em; }
+    .proof span { color: var(--muted); font-size: 13px; }
+
+    section.content { padding: 112px 58px; }
+    .section-title { max-width: 760px; margin-bottom: 42px; }
+    .section-title h2 { margin: 0 0 14px; font-size: clamp(40px, 5vw, 68px); line-height: 1; letter-spacing: -0.06em; }
+    .section-title p { max-width: 610px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr 1fr;
+      grid-template-rows: 245px 220px;
+      gap: 16px;
+    }
+
+    .capability {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid rgba(23, 25, 29, .08);
+    }
+    .capability h3 { max-width: 300px; margin: 0 0 10px; font-size: 26px; letter-spacing: -0.04em; }
+    .capability p { max-width: 330px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .capability strong { position: absolute; right: 24px; bottom: 20px; font-size: 45px; letter-spacing: -0.06em; }
+    .capability.growth { grid-row: span 2; background: var(--lime); }
+    .capability.growth strong { font-size: 72px; }
+    .capability.commerce { grid-column: span 2; background: #dfe4e2; }
+    .capability.team { background: #f9faf7; }
+    .capability.activity { background: #e6ebe2; }
+    .capability.ai { background: #f7f8f5; }
+
+    .case-wrap { display: grid; gap: 24px; }
+    .case {
+      min-height: 520px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid rgba(23, 25, 29, .08);
+    }
+    .case-copy { padding: 48px; }
+    .case-copy h3 { margin: 0 0 16px; font-size: 42px; line-height: 1.03; letter-spacing: -0.055em; }
+    .case-copy p { max-width: 470px; margin: 0 0 28px; color: var(--muted); line-height: 1.7; }
+    .metrics { display: flex; flex-wrap: wrap; gap: 26px; }
+    .metrics strong { display: block; font-size: 30px; letter-spacing: -0.05em; }
+    .metrics span { color: var(--muted); font-size: 12px; }
+    .case-visual {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      padding: 44px;
+      background: var(--surface-2);
+    }
+    .case-visual.lime { background: var(--lime); }
+    .poster {
+      width: min(390px, 88%);
+      aspect-ratio: 4 / 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .76);
+      border: 1px solid rgba(255, 255, 255, .85);
+      box-shadow: 0 26px 55px rgba(56, 65, 44, .13), inset 0 1px 0 rgba(255, 255, 255, .85);
+      transform: rotate(3deg);
+    }
+    .poster strong { font-size: 84px; letter-spacing: -0.08em; line-height: .85; }
+    .poster p { margin: 0; color: #4f555d; font-size: 17px; line-height: 1.45; }
+    .asset-slot {
+      width: min(430px, 92%);
+      padding: 34px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .7);
+      border: 1px dashed rgba(23, 25, 29, .22);
+      text-align: center;
+      color: var(--muted);
+    }
+    .asset-slot strong { display: block; margin-bottom: 8px; color: var(--ink); font-size: 22px; }
+
+    .more-work {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      grid-template-rows: 280px 230px;
+      gap: 16px;
+    }
+    .work {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(23, 25, 29, .08);
+      background: rgba(255, 255, 255, .72);
+    }
+    .work:first-child { grid-row: span 2; background: #e3e8e3; }
+    .work:nth-child(2) { background: var(--lime); }
+    .work h3 { max-width: 440px; margin: 0; font-size: 31px; letter-spacing: -0.045em; }
+    .work p { margin: 0; color: #626870; line-height: 1.6; }
+    .work .big { font-size: 70px; font-weight: 850; letter-spacing: -0.07em; }
+
+    .method {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 42px;
+      align-items: start;
+    }
+    .method h2 { margin: 0; font-size: 58px; line-height: 1; letter-spacing: -0.06em; }
+    .method-flow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .method-step { min-height: 150px; padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); background: rgba(255, 255, 255, .62); }
+    .method-step h3 { margin: 0 0 8px; font-size: 21px; }
+    .method-step p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+    }
+    .about-main, .about-side { padding: 38px; border-radius: var(--radius); border: 1px solid var(--line); background: rgba(255, 255, 255, .68); }
+    .about-main h2 { max-width: 720px; margin: 0 0 24px; font-size: 48px; line-height: 1.04; letter-spacing: -0.055em; }
+    .about-main p { max-width: 680px; margin: 0; color: var(--muted); line-height: 1.75; }
+    .about-main p + p { margin-top: 16px; }
+    .about-side { background: var(--lime); }
+    .about-side strong { display: block; margin-bottom: 12px; font-size: 28px; }
+    .about-side p { margin: 0; line-height: 1.7; color: #3c4b20; }
+
+    .contact {
+      padding: 92px 58px 72px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+    .contact h2 { max-width: 850px; margin: 0 auto 24px; font-size: clamp(48px, 7vw, 88px); line-height: .98; letter-spacing: -0.07em; }
+    .contact p { margin: 0 0 26px; color: var(--muted); }
+    .contact .button { background: var(--ink); color: #f7f8f5; }
+
+    .approve {
+      width: min(1460px, calc(100% - 28px));
+      margin: 0 auto 70px;
+      padding: 22px 26px;
+      border: 2px solid transparent;
+      border-radius: 22px;
+      background: #f7f8f5;
+      color: var(--ink);
+      text-align: center;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .approve:hover { transform: translateY(-2px); }
+    .approve.selected { border-color: var(--ink); background: var(--lime); }
+
+    @media (max-width: 920px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 50px 28px 0; }
+      .hero-copy h1 { font-size: 58px; }
+      .archive { min-height: 540px; }
+      .proof { grid-template-columns: repeat(2, 1fr); padding: 28px; }
+      section.content { padding: 78px 28px; }
+      .capabilities { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .capability, .capability.growth, .capability.commerce { grid-row: auto; grid-column: auto; min-height: 220px; }
+      .case { grid-template-columns: 1fr; }
+      .case-visual { min-height: 420px; }
+      .more-work { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .work, .work:first-child { grid-row: auto; min-height: 250px; }
+      .method, .about { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .frame { width: calc(100% - 14px); margin-top: 8px; border-radius: 20px; }
+      .nav { padding: 0 20px; }
+      .hero-copy h1 { font-size: 46px; }
+      .hero-copy p { font-size: 15px; }
+      .archive { min-height: 470px; }
+      .avatar { width: 100%; }
+      .glass.back, .glass.mid { width: 250px; height: 340px; }
+      .emoji { width: 48px; height: 48px; font-size: 24px; }
+      .capabilities, .method-flow { grid-template-columns: 1fr; }
+      .case-copy { padding: 30px 24px; }
+      .case-copy h3 { font-size: 34px; }
+      .contact { padding: 72px 24px 58px; }
+      .contact h2 { font-size: 48px; }
+    }
+  
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    :focus-visible { outline:3px solid var(--lime-deep); outline-offset:5px; }
+    html { scroll-padding-top:90px; }
+    .hero { min-height:580px; padding-top:38px; padding-bottom:32px; }
+    .hero-copy h1 { font-size:clamp(40px,4.5vw,66px); line-height:1.16; letter-spacing:-.045em; }
+    .hero-copy h1 span { display:block; }
+    .hero-copy p { font-size:16px; line-height:1.8; }
+    .archive { min-height:465px; }
+    .avatar { max-height:450px; }
+    .halo { width:380px;height:380px; }
+    .glass.back,.glass.mid { height:320px;width:255px; }
+    .glass.front { width:340px;height:130px; }
+    .intro-label { display:block; margin-bottom:20px; font-size:14px; color:var(--lime-deep); font-weight:800; }
+    section.content { padding:76px 58px; }
+    .section-title h2 { font-size:clamp(32px,4vw,50px); line-height:1.18; }
+    .proof span { display:block; line-height:1.7; }
+    .lead-case { display:grid; grid-template-columns:1fr 1.05fr; align-items:center; gap:42px; padding:36px; background:var(--surface); border:1px solid var(--line); border-radius:24px; }
+    .lead-case h3 { font-size:38px; line-height:1.22; margin:0 0 18px; }
+    .lead-case p { line-height:1.85; color:var(--muted); }
+    .lead-case .button { margin-top:24px; }
+    .note-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    .note-pair img { width:100%;height:auto;border-radius:12px;border:1px solid var(--line); }
+    .note-pair figure { margin:0; }
+    .persona-lead .note-pair { grid-template-columns:1.7fr 1fr; }
+    .note-pair figcaption { padding-top:10px;line-height:1.5;font-size:12px;color:var(--muted); }
+    .brand-case { margin-top:28px; padding:36px; border-radius:24px; background:var(--surface-2); }
+    .brand-case h3 { margin:0 0 14px; font-size:32px; }
+    .brand-case p { max-width:800px;line-height:1.85;color:var(--muted); }
+    .brand-case .button { margin-top:20px; }
+    .support-links { display:grid;grid-template-columns:1fr 1fr;gap:24px; }
+    .support-links article { border-top:2px solid var(--ink); padding:22px 0; }
+    .support-links h3 { font-size:24px;margin:0 0 16px; }
+    .support-links p { color:var(--muted);line-height:1.85; }
+    .support-links a { display:inline-block;border-bottom:1px solid currentColor;padding:10px 0; }
+    .ability-line { display:grid;grid-template-columns:200px 1fr;gap:26px;padding:25px 0;border-bottom:1px solid var(--line); }
+    .ability-line h3 { margin:0;font-size:23px; }
+    .ability-line p { max-width:720px;margin:0;color:var(--muted);line-height:1.8; }
+    .about-main h2 { font-size:34px;line-height:1.3; }
+    .contact h2 { font-size:clamp(32px,4vw,52px);line-height:1.3; }
+    .draft-note { padding:15px 28px;background:var(--surface-2);font-size:13px;line-height:1.7; }
+    .button,.nav-button { min-height:44px; }
+    @media(max-width:1000px){ .lead-case{grid-template-columns:1fr;} .hero{grid-template-columns:1fr 1fr;padding:32px;} .archive{min-height:400px;} .glass{display:none;} .hero-copy h1{font-size:42px;} .nav-links{gap:16px;} .nav{padding:0 24px;} }
+    @media(max-width:767px){ .frame{width:calc(100% - 16px);margin:8px auto 24px;} .hero{grid-template-columns:1fr;padding:36px 24px;} .hero-copy h1{font-size:40px;} .archive{min-height:300px;max-height:320px;margin-top:24px;} .avatar{max-height:310px;width:auto;} .halo{width:280px;height:280px;top:10px;} section.content{padding:52px 24px;} .proof{padding:24px;gap:22px;} .proof strong{font-size:27px;} .lead-case,.brand-case{padding:24px;} .lead-case h3{font-size:32px;} .note-pair img{height:auto;} .note-pair{gap:10px;} .support-links,.ability-line{grid-template-columns:1fr;} .ability-line{gap:12px;} .about-main,.about-side{padding:26px;} .about-main h2{font-size:28px;} .nav{height:64px;padding:0 18px;} .nav-links{display:none;} .brand{font-size:15px;} }
+    @media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *,*::before,*::after{animation:none!important;transition:none!important;} }
+    @media(prefers-color-scheme:dark){ :root{--ink:#eff2ea;--muted:#b8c0b2;--paper:#1a1e19;--surface:#252a23;--surface-2:#30372c;--line:#46513e;--lime:#b7e94a;--lime-deep:#c3e784;} body{background:#121611;} .nav{background:rgba(26,30,25,.94);} .nav-links,.hero-copy p,.section-title p,.work p,.about-main p,.contact p{color:var(--muted);} .proof,.about-main{background:var(--surface);} .button.primary,.nav-button,.contact .button{background:var(--lime);color:#17191d;} .button.secondary{background:transparent;border-color:var(--line);} .about-side{color:#17191d;} .about-side p{color:#293419;} }
+
+    /* IP作品首屏沿用原配色；真实截图承担作品证据，不设置视频播放按钮。 */
+    .hero.ip-hero { grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); gap:46px; padding:46px 58px; min-height:570px; }
+    .ip-hero .hero-copy h1 { font-size:clamp(38px,4.25vw,64px); line-height:1.2; }
+    .ip-hero .hero-copy p { max-width:480px; }
+    .ip-workbench { min-width:0; position:relative; padding:18px 0; }
+    .ip-feature { display:block; overflow:hidden; margin:0; border-radius:20px; border:1px solid var(--line); background:var(--surface); }
+    .ip-feature a { display:block; }
+    .ip-feature img { width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 36.3%;background:#17191d; }
+    .ip-feature figcaption { display:flex;justify-content:space-between;gap:16px;align-items:center;padding:20px 22px; }
+    .ip-feature figcaption strong { display:block;font-size:22px; }
+    .ip-feature figcaption span { display:block;font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6; }
+    .ip-feature figcaption b { color:var(--lime-deep);font-size:28px;line-height:1;white-space:nowrap; }
+    .ip-strip { margin:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+    .ip-strip a { min-width:0;display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);transition:background .2s ease; }
+    .ip-strip a:hover { background:var(--surface-2); }
+    .ip-strip img { width:90px;height:100px;object-fit:cover;object-position:left center;border-radius:8px; }
+    .ip-strip a:last-child img { object-position:center top; }
+    .ip-strip strong { display:block;font-size:16px;line-height:1.5; }
+    .ip-strip span { display:block;margin-top:6px;font-size:12px;line-height:1.65;color:var(--muted); }
+    .ip-directions { display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:25px;font-size:13px;font-weight:700;color:var(--lime-deep); }
+    @media(max-width:1100px){ .hero.ip-hero { gap:28px;padding:38px 32px; } .ip-strip { grid-template-columns:1fr; } .ip-strip a { grid-template-columns:65px 1fr; } .ip-strip img { width:65px;height:62px; } }
+    @media(max-width:767px){ .hero.ip-hero { grid-template-columns:1fr;padding:36px 24px;gap:18px; } .ip-hero .hero-copy h1 { font-size:39px; } .ip-workbench { padding:0; } .ip-feature figcaption { padding:16px; } .ip-feature figcaption strong { font-size:19px; } .ip-feature figcaption b { font-size:25px; } .ip-directions { font-size:12px;gap:9px 16px; } }
+    .ip-strip img,.ip-strip a:last-child img { object-fit:contain;object-position:center;background:#fff; }
+
+    .persona-lead { margin-bottom:28px; border-top:4px solid var(--lime); }
+
+    /* Evidence keeps its native shape; hero metrics describe the whole post. */
+    .ip-feature figcaption { display:block; }
+    .ip-feature .work-heading strong { font-size:22px; }
+    .work-metrics { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:18px 0 0;padding-top:18px;border-top:1px solid var(--line); }
+    .work-metrics > div { display:flex;flex-direction:column;gap:7px; }
+    .work-metrics dt { order:2;font-size:11px;color:var(--muted); }
+    .work-metrics dd { margin:0;font-size:clamp(19px,1.7vw,25px);font-weight:800;letter-spacing:-.05em;white-space:nowrap; }
+    .work-metrics > div:last-child dd { color:var(--lime-deep); }
+    .case-kicker { margin-bottom:18px;font-size:12px;font-weight:750;color:var(--lime-deep);letter-spacing:.035em; }
+    #cases .lead-case + .lead-case { margin-top:28px; }
+    .persona-lead { margin-bottom:0;border-top:1px solid var(--line); }
+    .case-preview { margin:0;min-width:0; }
+    .case-preview a { display:block;border-radius:16px;overflow:hidden; }
+    .case-preview img { width:100%;height:auto; }
+    .case-preview figcaption { font-size:12px;line-height:1.8;color:var(--muted);margin-top:14px; }
+    .case-preview.song-cover img,.song-cover img { aspect-ratio:16/9;object-fit:cover;object-position:center 36.3%; }
+    .guoer-preview { max-width:270px;margin-inline:auto; }
+    .lead-case > div { min-width:0; }
+    .image-link { cursor:zoom-in; }
+    @media(max-width:1100px) { .work-metrics { grid-template-columns:repeat(3,minmax(0,1fr));row-gap:18px; } }
+    @media(max-width:767px) { .work-metrics dd { font-size:23px; } .persona-lead .note-pair { grid-template-columns:1fr; } .guoer-preview { max-width:250px; } }
+.image-dialog { width: min(1120px,calc(100vw - 32px)); max-height: 92dvh; padding: 0; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); color: var(--ink); overflow: auto; }
+.image-dialog::backdrop { background: rgba(15,18,15,.8); }
+.dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.dialog-bar h2 { font-size: 15px; line-height: 1.5; letter-spacing: 0; }
+.dialog-close { flex-shrink: 0; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); min-height: 42px; padding: 8px 16px; cursor: pointer; font-size: 13px; }
+.dialog-media { padding: 18px; background: var(--surface-2); }
+.dialog-media img { width: 100%; max-height: calc(92dvh - 115px); height: auto; object-fit: contain; }
+.image-dialog { width: calc(100vw - 20px); }
+.dialog-bar { padding: 12px 14px; }
+.dialog-media { padding: 10px; }
+
+.image-dialog { width:min(1120px,calc(100vw - 32px));max-height:92dvh; }
+.dialog-bar { padding:14px 20px; }
+.dialog-media { padding:18px; }
+@media(max-width:767px) { .image-dialog { width:calc(100vw - 20px); } .dialog-bar { padding:12px 14px; } .dialog-media { padding:10px; } }
+
+/* Account context and editorial process, using the established portfolio palette. */
+.account-overview { border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface); }
+.account-overview .section-title { margin-bottom:28px; }
+.account-summary-head,.account-summary-row { display:grid;grid-template-columns:minmax(175px,.8fr) minmax(0,2fr) minmax(130px,.6fr);gap:32px; }
+.account-summary-head { padding-bottom:15px;color:var(--muted);font-size:12px;border-bottom:1px solid var(--line); }
+.account-summary-row { padding:25px 0;align-items:start; }
+.account-summary-row + .account-summary-row { border-top:1px solid var(--line); }
+.account-summary-row:last-child { padding-bottom:0; }
+.account-identity > span { display:block;color:var(--lime-deep);font-size:12px;font-weight:700;margin-bottom:8px; }
+.account-identity h3 { margin:0;font-size:21px;line-height:1.45;letter-spacing:-.025em; }
+.account-identity a { display:inline-block;padding-block:3px; }
+.account-identity a:hover,.approach-detail a:hover { text-decoration:underline;text-underline-offset:5px; }
+.account-scope p { margin:0;color:var(--ink);font-size:14px;line-height:1.8; }
+.account-scope .account-role { margin-top:9px;color:var(--muted);font-size:13px; }
+.account-role b { display:inline-block;margin-right:12px;font-size:12px;font-weight:600; }
+.account-numbers { display:flex;flex-wrap:wrap;gap:12px 24px;margin:0; }
+.account-numbers > div { display:flex;flex-direction:column;gap:5px; }
+.account-numbers dt { order:2;font-size:12px;color:var(--muted); }
+.account-numbers dd { margin:0;font-size:31px;line-height:1.2;letter-spacing:-.045em;font-weight:800; }
+.account-numbers .account-secondary { flex-basis:100%;flex-direction:row;align-items:baseline;gap:8px; }
+.account-numbers .account-secondary dd { font-size:16px;font-weight:700;letter-spacing:0; }
+.account-numbers .account-secondary dt { font-size:11px; }
+.operating-approach { background:var(--surface-2); }
+.approach-list { list-style:none;padding:0;margin:0; }
+.approach-list > li { display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,1.7fr);gap:48px;padding:28px 0;border-top:1px solid var(--line); }
+.approach-list > li:last-child { padding-bottom:0; }
+.approach-title > span { font-size:12px;font-weight:750;color:var(--lime-deep); }
+.approach-title h3 { font-size:22px;line-height:1.5;margin:10px 0 0;letter-spacing:-.02em; }
+.approach-detail p { margin:0;color:var(--muted);font-size:15px;line-height:1.85; }
+.approach-detail a { display:inline-flex;align-items:center;min-height:44px;font-size:12px;font-weight:700;margin-top:7px;text-underline-offset:5px; }
+@media(max-width:1000px) {
+ .account-summary-head,.account-summary-row { grid-template-columns:minmax(150px,.8fr) minmax(0,1.8fr) 110px;gap:22px; }
+ .account-numbers dd { font-size:28px; }
+ .approach-list > li { grid-template-columns:minmax(170px,.8fr) minmax(0,1.5fr);gap:28px; }
+}
+@media(max-width:767px) {
+ .account-summary-head { display:none; }
+ .account-summary-row { grid-template-columns:minmax(0,1fr) auto;gap:18px 16px; }
+ .account-summary-row:first-of-type { border-top:1px solid var(--line); }
+ .account-identity { grid-column:1;grid-row:1; }
+ .account-identity h3 { font-size:20px; }
+ .account-scope { grid-column:1/-1;grid-row:2; }
+ .account-numbers { grid-column:2;grid-row:1;max-width:110px;text-align:right;justify-content:flex-end; }
+ .account-numbers .account-secondary { justify-content:flex-end; }
+ .account-scope p { font-size:14px; }
+ .approach-list > li { grid-template-columns:1fr;gap:14px;padding:25px 0; }
+ .approach-title h3 { font-size:21px;margin-top:8px; }
+ .approach-detail p { font-size:14px; }
+}
+
+
+/* Compact homepage previews; original account images open in the existing viewer. */
+.account-summary-head,.account-summary-row { grid-template-columns:240px minmax(0,1fr) 145px;gap:34px; }
+.account-summary-row { align-items:center;padding:28px 0; }
+.account-identity .account-preview { display:block;width:100%;margin-top:15px;padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff; }
+.account-preview img { display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center top; }
+.account-preview.portrait-profile img { object-position:center 15%; }
+.account-preview:focus-visible { outline:3px solid var(--lime-deep);outline-offset:4px; }
+@media(hover:hover) { .account-preview:hover { border-color:var(--lime-deep); } }
+@media(max-width:1000px) { .account-summary-head,.account-summary-row { grid-template-columns:190px minmax(0,1fr) 120px;gap:24px; } }
+@media(max-width:767px) {
+ .account-summary-row { grid-template-columns:minmax(0,1fr) auto;gap:18px 16px;align-items:start; }
+ .account-identity .account-preview { max-width:240px;margin-top:14px; }
+ .account-numbers { padding-top:26px; }
+}
+
+</style><link rel="stylesheet" href="portfolio-motion.css"><link rel="stylesheet" href="short-drama.css"><link rel="stylesheet" href="meme-art-preview.css">
+</head>
+<body><div class="frame">
+
+<nav class="nav" aria-label="主导航"><a class="brand" href="#top">Elena_Fu的作品集</a><div class="nav-links"><a href="#accounts">账号经历</a><a href="#cases">IP 案例</a><a href="#capabilities">运营思路</a><a href="#about">关于我</a></div><a class="nav-button" href="#contact">GitHub</a><div class="reading-progress" aria-hidden="true"><span></span></div></nav>
+<header class="hero folder-hero" id="top">
+ <div class="hero-copy"><span class="intro-label">Elena_Fu / 教育行业内容运营</span><h1>内容策划<span>与 IP 运营</span></h1><p>负责教育类账号与 IP 内容运营，结合备考需求和平台热梗开展选题策划、图文视频创作、内容发布与用户互动。</p><div class="actions hero-actions"><a class="button primary hero-action" href="#cases" data-archive-toggle data-open-label="打开作品" data-close-label="收起作品" aria-expanded="false" aria-controls="archive-sheets"><span data-toggle-label>打开作品</span><span class="action-symbol action-toggle" aria-hidden="true">＋</span></a><a class="button secondary hero-action" href="#accounts"><span>了解账号</span><span class="action-symbol action-arrow" aria-hidden="true">↓</span></a></div><div class="ip-directions" aria-label="三个IP方向"><span>老师 IP</span><span>厚厚 · 官号拟人</span><span>过儿 · 厚大官方 IP 形象（法考生角色）</span></div><div class="hero-note">独立完成内容创作，并与设计、剪辑同事协作推进制作。</div></div>
+ <div class="archive-desk" id="portfolio-archive" data-archive-desk data-open="false" aria-label="三类IP作品文件夹">
+  <div class="archive-floor" aria-hidden="true"></div><div class="archive-back" aria-hidden="true"><span class="archive-tab">精选作品</span></div><div class="archive-liner" aria-hidden="true"></div>
+  <button class="archive-front" type="button" data-archive-toggle data-open-label="打开作品" data-close-label="收起作品" aria-expanded="false" aria-controls="archive-sheets"><small>Elena_Fu的作品集</small><strong>IP 内容作品集</strong><span class="archive-front-label" data-toggle-label>打开作品</span><span class="archive-index" aria-hidden="true">01—03</span></button>
+  <div class="archive-sheets" id="archive-sheets">
+   <a class="archive-sheet teacher-sheet" href="project-folder-teacher-ip-yangcong-draft.html" aria-label="打开老师IP案例：免我法考苦"><span class="sheet-type">01 / 老师视角 <span aria-hidden="true">↗</span></span><h2>老师 IP</h2><div class="sheet-image"><img src="houda-online-viral-04.jpg" alt="老师群像演绎免我法考苦" width="1080" height="2520" fetchpriority="high"></div><span class="sheet-foot"><span>热梗改编</span><b>52.7万 播放</b></span></a>
+   <a class="archive-sheet guoer-sheet" href="project-folder-guoer-ip-yangcong-draft.html" aria-label="打开过儿IP案例：法考生角色的内容策划与物料应用"><span class="sheet-type">02 / 学生视角 <span aria-hidden="true">↗</span></span><h2>过儿 · 官方 IP 内容</h2><div class="sheet-image"><img src="ip-assets/guoer-classroom-sample.png" alt="过儿坐在课桌前听老师讲解" width="554" height="892"></div><span class="sheet-foot"><span>内容创作</span><b>物料应用</b></span></a>
+   <a class="archive-sheet houhou-sheet" href="project-folder-houhou-ip-yangcong-draft.html" aria-label="打开厚厚IP案例：厚大官号拟人形象与内容运营"><span class="sheet-type">03 / 机构视角 <span aria-hidden="true">↗</span></span><h2>厚厚 · 官号拟人内容</h2><div class="sheet-image"><img src="ip-assets/houhou-trend-11.png" alt="蓝色账号角色厚厚的一起过法考作品" width="576" height="558"></div><span class="sheet-foot"><span>内容创作</span><b>评论互动</b></span></a>
+  </div><p class="archive-instruction" data-archive-hint>打开文件夹，查看三个 IP 案例</p>
+ </div>
+</header>
+
+<main>
+<section class="content account-overview" id="accounts" aria-labelledby="accounts-heading">
+ <div class="section-title"><h2 id="accounts-heading">账号运营经历</h2><p>围绕品牌官号、员工视角账号与法考垂类账号的不同定位，开展内容策划、制作、发布与用户互动。</p></div>
+ <div class="account-summary-head" aria-hidden="true"><span>账号与定位</span><span>内容方向与负责工作</span><span>运营数据</span></div>
+ <article class="account-summary-row" aria-labelledby="account-houda"><div class="account-identity"><span>品牌官号</span><h3 id="account-houda"><a href="project-folder-houda-official-yangcong-draft.html#accounts">厚大在线 ↗</a></h3><a class="account-preview image-link" href="houda-online-profile-current.png" data-lightbox aria-haspopup="dialog" data-caption="厚大在线 · 账号主页" aria-label="放大查看厚大在线账号主页"><img src="houda-online-profile-current.png" alt="厚大在线的账号主页，展示账号介绍与已发布内容" width="2104" height="1432" loading="lazy"></a></div><div class="account-scope"><p>围绕老师、课程、备考知识与产品活动策划内容，结合热梗表达开展用户互动。</p><p class="account-role"><b>运营时间</b>2024.07—至今</p><p class="account-role"><b>负责工作</b>选题策划、图文与视频创作、内容发布及评论互动，并配合产品推广与活动执行。</p></div><dl class="account-numbers"><div><dt>当前粉丝</dt><dd>3.8万</dd></div></dl></article>
+ <article class="account-summary-row" aria-labelledby="account-work-title"><div class="account-identity"><span>员工视角</span><h3 id="account-work-title"><a href="project-folder-houda-official-yangcong-draft.html#accounts">厚大在线<br>（打工版）↗</a></h3><a class="account-preview image-link" href="houda-work-profile-current.png" data-lightbox aria-haspopup="dialog" data-caption="厚大在线（打工版） · 账号主页" aria-label="放大查看厚大在线（打工版）账号主页"><img src="houda-work-profile-current.png" alt="厚大在线（打工版）的账号主页，展示账号介绍与已发布内容" width="2154" height="1394" loading="lazy"></a></div><div class="account-scope"><p>从员工视角出发，结合老师动态、备考情绪与法学生梗开展内容创作。</p><p class="account-role"><b>运营时间</b>2023.12—2025.09</p><p class="account-role"><b>负责工作</b>从 0 搭建账号，独立完成选题策划、图文与视频制作、发布及评论互动。</p></div><dl class="account-numbers"><div><dt>阶段粉丝</dt><dd>约2万</dd></div></dl></article>
+ <article class="account-summary-row" aria-labelledby="account-meme"><div class="account-identity"><span>垂类内容账号</span><h3 id="account-meme"><a href="project-folder-fakao-meme-yangcong-draft.html">法考 meme ↗</a></h3><a class="account-preview image-link portrait-profile" href="fakao-meme-profile.png" data-lightbox aria-haspopup="dialog" data-caption="法考 meme · 账号主页" aria-label="放大查看法考 meme账号主页"><img src="fakao-meme-profile.png" alt="法考 meme的账号主页，展示账号介绍与已发布内容" width="1320" height="2868" loading="lazy"></a></div><div class="account-scope"><p>围绕法学生的专业身份、学习压力与日常情绪创作图文和视频，融入厚大教材与课程信息。</p><p class="account-role"><b>运营时间</b>约2025.05—至今</p><p class="account-role"><b>负责工作</b>从 0 创建账号，独立完成命名、定位、选题、图文与视频制作及评论互动。</p></div><dl class="account-numbers"><div><dt>累计赞藏</dt><dd>4万+</dd></div><div class="account-secondary"><dt>发布内容</dt><dd>32篇</dd></div></dl></article>
+</section>
+
+<section class="content" id="cases"><div class="section-title"><h2>IP 内容案例</h2><p>以厚大授课老师、官号拟人形象和官方 IP 过儿为内容主体，开展热梗改编、图文与视频创作及评论互动。</p></div>
+<article class="lead-case teacher-lead project-folder" id="teacher"><div><div class="case-kicker">01 / 老师视角</div><h3>老师 IP</h3><p>代表作品《免我法考苦》以热梗为切入点，将刷题、提分与拿证等备考期待写入歌词，结合厚大老师群像完成视频创作。</p><div class="metrics" aria-label="免我法考苦作品表现"><div><strong>52.7万</strong><span>播放</span></div><div><strong>约1.5万</strong><span>点赞</span></div><div><strong>1,386</strong><span>收藏</span></div><div><strong>1,900+</strong><span>评论</span></div><div><strong>7,585</strong><span>分享</span></div></div><p>独立完成选题、歌词改编、AI 动作素材制作、剪辑配乐、发布与评论互动。</p><a class="button primary" href="project-folder-teacher-ip-yangcong-draft.html">查看案例</a></div><figure class="case-preview"><a class="image-link song-cover" href="houda-online-viral-04.jpg" data-lightbox aria-haspopup="dialog" data-caption="免我法考苦 · 老师群像演绎备考情绪" aria-label="放大查看：免我法考苦 · 老师群像演绎备考情绪"><img src="houda-online-viral-04.jpg" alt="免我法考苦 · 老师群像演绎备考情绪" width="1080" height="2520" loading=lazy></a><figcaption>热梗改编 · 老师群像</figcaption></figure></article><article class="lead-case guoer-lead project-folder" id="guoer"><div><div class="case-kicker">02 / 学生视角</div><h3>过儿 · 官方 IP 内容</h3><p>过儿是厚大官方 IP 形象，代表法考生。围绕学习与备考日常开展图文创作与小课堂内容策划。</p><p>在品牌联动过程中，使用过儿相关物料，配合活动展示与传播。</p><a class="button primary" href="project-folder-guoer-ip-yangcong-draft.html">查看案例</a></div><figure class="case-preview guoer-preview"><a class="image-link " href="ip-assets/guoer-classroom-sample.png" data-lightbox aria-haspopup="dialog" data-caption="过儿小课堂 · 老师讲解与过儿听课" aria-label="放大查看：过儿小课堂 · 老师讲解与过儿听课"><img src="ip-assets/guoer-classroom-sample.png" alt="过儿小课堂 · 老师讲解与过儿听课" width="554" height="892" loading=lazy></a><figcaption>过儿以法考生身份参与小课堂</figcaption></figure></article><article class="lead-case persona-lead project-folder" id="houhou"><div><div class="case-kicker">03 / 机构视角</div><h3>厚厚 · 官号拟人内容</h3><p>厚厚是厚大官号的拟人形象，代表厚大与用户互动。负责形象需求策划、内容创作与评论运营，角色视觉由设计师完成。</p><div class="metrics"><div><strong>3.8万</strong><span>“一起过法考”浏览</span></div><div><strong>5,300+</strong><span>同篇作品点赞</span></div></div><p>以厚厚的身份回应备考话题、介绍老师与教材，并参与用户及账号间互动。</p><a class="button primary" href="project-folder-houhou-ip-yangcong-draft.html">查看案例</a></div><div class="note-pair"><figure><a href="ip-assets/houhou-trend-11.png" data-lightbox aria-haspopup="dialog" data-caption="作品详情"><img src="ip-assets/houhou-trend-11.png" alt="厚厚一起过法考作品截图，显示5323个赞" loading="lazy"></a><figcaption>热梗改编 · 一起过法考</figcaption></figure><figure><a href="ip-assets/houhou-trend-20.png" data-lightbox aria-haspopup="dialog" data-caption="作品详情"><img src="ip-assets/houhou-trend-20.png" alt="厚厚介绍9.9元刑法理论卷的作品截图" loading="lazy"></a><figcaption>角色内容 · 教材介绍</figcaption></figure></div></article>
+</section><section class="content operating-approach" id="capabilities" aria-labelledby="approach-heading"><div class="section-title"><h2 id="approach-heading">内容运营思路</h2><p>围绕选题、表达、制作与互动四个环节，结合用户需求和账号定位推进内容运营。</p></div>
+<ol class="approach-list">
+ <li><div class="approach-title"><span>01 / 人群与场景</span><h3>围绕备考需求选择话题</h3></div><div class="approach-detail"><p>结合刷题、提分、等待成绩等备考场景，从用户的学习需求与情绪中寻找选题。</p><a href="project-folder-houhou-ip-yangcong-draft.html#content">查看作品：一起过法考 ↗</a></div></li>
+ <li><div class="approach-title"><span>02 / 形式与表达</span><h3>结合账号定位进行热梗改编</h3></div><div class="approach-detail"><p>选择适合账号定位的热梗，结合老师、IP 角色及教材信息进行二次创作，形成图文或视频内容。</p><a href="project-folder-teacher-ip-yangcong-draft.html#idea">查看作品：免我法考苦 ↗</a></div></li>
+ <li><div class="approach-title"><span>03 / 制作与协作</span><h3>明确构思，推进内容制作</h3></div><div class="approach-detail"><p>先确定文案、素材和画面构思，再根据内容需要独立制作，或对接设计、剪辑同事协作完成。</p><a href="project-folder-guoer-ip-yangcong-draft.html#process">查看案例：过儿小课堂 ↗</a></div></li>
+ <li><div class="approach-title"><span>04 / 互动与调整</span><h3>参考同类账号，拓展互动方式</h3></div><div class="approach-detail"><p>观察同类账号的内容与互动方式，尝试账号间互动和多角色内容，并结合评论话题延续交流。</p><a href="project-folder-houhou-ip-yangcong-draft.html#direction">查看案例：厚厚的账号互动 ↗</a></div></li>
+</ol></section><section class="content" id="account-work"><div class="section-title"><h2>账号运营与系列创作</h2><p>围绕不同账号定位开展内容策划、创作与互动，并尝试系列AI短剧等内容形式。</p></div><article class="lead-case"><div><h3>法考垂类人设号</h3><p>在公司账号矩阵计划下，从 0 创建法考垂类账号，独立完成命名、定位、选题及图文视频制作，围绕法学生的专业身份、学习压力与日常情绪持续创作。</p><div class="metrics"><div><strong>35.8万</strong><span>代表内容浏览</span></div><div><strong>5,623</strong><span>同篇内容评论</span></div></div><p>通过开放式话题与评论互动，邀请用户接梗、分享经历，延展内容讨论。</p><a class="button primary" href="project-folder-fakao-meme-yangcong-draft.html">查看案例</a></div><div class="note-pair"><figure><a class="meme-art-preview" href="fakao-meme-358k.png" data-lightbox aria-haspopup="dialog" data-caption="医学生与法学生 · 完整发布记录" aria-label="查看医学生与法学生作品的完整发布记录"><img src="fakao-meme-358k.png" alt="紫绿两栏中的医学生与法学生身份对照" width="1320" height="2868" loading="lazy"></a><figcaption>专业身份 · 话题创作</figcaption></figure><figure><a href="fakao-meme-comments.png" data-lightbox aria-haspopup="dialog" data-caption="作品详情"><img src="fakao-meme-comments.png" alt="作者文案与用户长评二创" loading="lazy"></a><figcaption>玩梗二创</figcaption></figure></div></article>
+<article class="brand-case"><h3>品牌官号与员工视角账号</h3><p>运营厚大在线与厚大在线（打工版），分别从品牌官方与员工视角策划内容，覆盖老师动态、备考话题、产品信息与活动推广。</p><div class="metrics"><div><strong>3.8万</strong><span>厚大在线当前粉丝</span></div><div><strong>约2万</strong><span>打工版阶段粉丝</span></div></div><a class="button primary" href="project-folder-houda-official-yangcong-draft.html">查看案例</a><span style="display:inline-block;margin-left:18px"><a class="text-link" href="project-folder-houda-official-yangcong-draft.html#recent-notes">近期笔记 ↗</a></span></article><article class="drama-entry" aria-labelledby="drama-entry-title"><div><span class="drama-label">全流程独立制作</span><h3 id="drama-entry-title">AI 短剧系列</h3><p>围绕水果拟人与情感剧情两类题材开展系列短剧创作，独立完成选题、剧本、画面制作、配音与剪辑。</p><div class="metrics"><div><strong>44,795</strong><span>水果短剧第5集浏览</span></div><div><strong>484</strong><span>同集分享</span></div></div><a class="button primary" href="project-folder-houda-official-yangcong-draft.html#short-drama">查看系列</a></div><div class="drama-entry-media"><figure><a class="drama-fruit-still" href="project-folder-houda-official-yangcong-draft.html#short-drama" aria-label="查看水果短剧系列"><img src="houda-online-viral-01.jpg" alt="水果拟人短剧中的香蕉、草莓与榴莲角色" width="1080" height="2520" loading="lazy"></a><figcaption>水果拟人短剧</figcaption></figure><figure><a class="drama-entry-poster" href="project-folder-houda-official-yangcong-draft.html#short-drama" aria-label="查看情感剧情短剧"><img src="ip-assets/short-drama/romance-heiress-cover.png" alt="情感短剧封面中的人物与厚大教材" width="546" height="838" loading="lazy"></a><figcaption>情感剧情 · 产品软广植入</figcaption></figure></div></article></section>
+
+<section class="content" id="more"><div class="section-title"><h2>产品推广与投放协作</h2><p>参与产品推广、外部创作者合作与商业投流，负责内容策划、发布协同，并跟进商品、订单及售后环节。</p></div><div class="support-links"><article><h3>低价商品拉新</h3><p>以低价图书及配套学习服务为拉新入口，结合名师 IP 的影响力开展推广。负责推广方案、内容规划与发布节奏，协调素人及老师账号开展宣传，并跟进商品上架、订单导入与售后处理。</p><p><strong>累计成交 9,952 笔订单</strong><br>上线第 5 天，新学员占比 85%+。</p><a href="project-folder-9r9-yangcong-draft.html">查看案例 ↗</a></article><article><h3>KOC 内容合作与商业投流</h3><p>对接外部创作者，跟进选题、审核、发布与结算；参与商业投流，负责服务商对接、素材筛选、发布排期及成交反馈跟进。</p><p><strong>KOC 内容约 2,000 篇，投入约 2 万元。</strong><br>商业投流约 12 万元，投放期间销售 ROI 约 1.2。</p><a href="project-folder-growth-yangcong-draft.html">查看案例 ↗</a></article></div></section>
+<section class="content" id="about"><div class="about"><article class="about-main"><h2>关于我</h2><p>Elena_Fu，教育行业新媒体与内容运营，主要从事账号运营、IP 内容创作与产品推广。</p><p>擅长结合用户需求、账号定位与平台热梗策划内容，将备考情绪、角色表达与产品信息融入图文和视频创作。能够从选题到成稿把控内容质量，关注文案是否贴近用户、画面是否准确传达创意，以及品牌信息的融入是否自然。</p><p>具备图文、视频及 AI 短剧的独立创作能力，也有统筹 6 人团队的经验，负责内容审核、发布排期与制作协作，推动内容从构思到上线。</p></article><aside class="about-side"><strong>北京印刷学院</strong><p>数字媒体技术<br>全日制本科</p></aside></div></section>
+</main><footer class="contact" id="contact"><h2>让我们聊聊内容</h2><p>内容策划 · IP 运营 · 项目协作</p><a class="button primary" href="https://github.com/elena0401bb/elenafbb" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></footer></div><dialog class="image-dialog" id="image-viewer" aria-labelledby="image-viewer-title"><div class="dialog-bar"><h2 id="image-viewer-title">作品原图</h2><button class="dialog-close" type="button" autofocus>关闭</button></div><div class="dialog-media"><img id="image-viewer-image" alt=""></div></dialog><script src="ip-case.js"></script><script src="portfolio-motion.js"></script></body></html>
