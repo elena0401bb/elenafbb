@@ -13,6 +13,7 @@ EXPECTED_REMOTE = 'https://github.com/elena0401bb/elenafbb.git'
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--message', required=True, help='Describe the completed update')
+    parser.add_argument('--prepare-only', action='store_true', help='Prepare the commit for pushing through GitHub Desktop')
     args = parser.parse_args()
     apple_git = Path('/Library/Developer/CommandLineTools/usr/bin/git')
     git = str(apple_git) if apple_git.is_file() else shutil.which('git')
@@ -33,6 +34,9 @@ def main():
         run('commit', '-m', args.message)
     else:
         print('No new file changes; retrying any previous unpushed commit.')
+    if args.prepare_only:
+        print('Ready to publish. In GitHub Desktop, open this repository and choose Push origin.')
+        return
     run('push', '-u', 'origin', 'HEAD:main')
     print('Pushed to GitHub. Check the Publish portfolio workflow for the website deployment result.')
 

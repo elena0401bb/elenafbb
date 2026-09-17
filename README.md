@@ -27,11 +27,13 @@ python3 tools/sync_from_workspace.py
 
 需要 Python 3.10 或以上版本。其他使用者可直接编辑 `site/`，不需要导出工具。`index.html` 与 `portfolio-yangcong-draft.html` 是同一首页的两个入口，使用导出工具时会同时更新。
 
-在本机配置 GitHub 上传权限后，每次完成一批修改，使用下面的命令完成导出、检查、提交和上传：
+本机已通过 GitHub Desktop 连接这个仓库。每次完成一批修改，先导出、检查并生成提交：
 
 ```sh
-python3 tools/publish.py --message "更新作品集文案与展示"
+python3 tools/publish.py --prepare-only --message "更新作品集文案与展示"
 ```
+
+然后在 GitHub Desktop 中选择本仓库，点击 **Push origin**。在 Codex 中协作时，可由助手完成上述步骤；在本机另行配置命令行认证后，也可省略 `--prepare-only` 直接上传。
 
 GitHub Pages 工作流会在上传后更新网站。**本地保存文件本身不会触发远程更新**；发布步骤以一轮修改完成为单位。当前未安装后台监听或定时上传。单独运行 `python3 tools/check_site.py` 可检查发布文件的本地链接。
 
