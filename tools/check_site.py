@@ -11,6 +11,33 @@ SITE = ROOT / 'site'
 CSS_URL = re.compile(r'url\(\s*[\'\"]?([^\'\")]+)[\'\"]?\s*\)', re.I)
 
 
+def srcset_urls(value):
+    """Read candidate URLs, including data URLs whose content contains commas."""
+    position = 0
+    while position < len(value):
+        while position < len(value) and (value[position].isspace() or value[position] == ','):
+            position += 1
+        start = position
+        while position < len(value) and not value[position].isspace():
+            position += 1
+        url = value[start:position]
+        if not url:
+            break
+        yield url.rstrip(',')
+        if url.endswith(','):
+            continue
+        depth = 0
+        while position < len(value):
+            char = value[position]
+            position += 1
+            if char == '(':
+                depth += 1
+            elif char == ')':
+                depth = max(0, depth - 1)
+            elif char == ',' and depth == 0:
+                break
+
+
 class Page(HTMLParser):
     def __init__(self, text):
         super().__init__()
@@ -21,8 +48,10 @@ class Page(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         for key, value in attrs:
-            if value and key in ('href', 'src', 'poster', 'data-src'):
+            if value and key in ('href', 'src', 'poster', 'data-src', 'data-original-src'):
                 self.refs.append(value)
+            if value and key == 'srcset':
+                self.refs.extend(srcset_urls(value))
             if value and key == 'id':
                 self.ids.add(value)
 

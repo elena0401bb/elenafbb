@@ -4,6 +4,7 @@ import argparse
 import json
 import shutil
 from check_site import Page, CSS_URL, local_target, ROOT, SITE, check
+from optimize_images import optimize
 
 PAGES = [
     'portfolio-yangcong-draft.html',
@@ -58,6 +59,7 @@ def main():
         old = (SITE / relative).resolve()
         if old.is_relative_to(SITE.resolve()) and old.is_file():
             old.unlink()
+    optimize(SITE, PAGES, local / 'image-optimization.json')
     shutil.copy2(SITE / PAGES[0], SITE / 'index.html')
     (SITE / '.nojekyll').touch()
     record.write_text(json.dumps(sorted(current), ensure_ascii=False, indent=2) + '\n')
@@ -71,4 +73,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

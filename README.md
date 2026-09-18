@@ -5,7 +5,7 @@
 这是为 GitHub Pages 整理的静态网站项目，使用 HTML、CSS 和 JavaScript，无需数据库。
 
 - GitHub 仓库：[elena0401bb/elenafbb](https://github.com/elena0401bb/elenafbb)
-- 网站地址（Pages 首次发布成功后可用）：https://elena0401bb.github.io/elenafbb/
+- 网站地址：https://elena0401bb.github.io/elenafbb/
 
 公开署名统一使用 **Elena_Fu**，页面不公开联系邮箱。发布检查会阻止邮箱或邮件链接进入网站。
 
@@ -15,6 +15,7 @@
 - `site/`：八个页面及其引用的图片、样式和交互文件。
 - `tools/sync_from_workspace.py`：从当前工作目录导出最新网页及所需素材。
 - `tools/check_site.py`：检查图片、样式、页面链接和区块定位。
+- `tools/optimize_images.py`：发布时生成多尺寸 WebP 预览图，按屏幕大小加载，原图保留供放大查看。
 - `.github/workflows/pages.yml`：更新推送到 `main` 后，检查并发布网站。
 
 ## 本地修改与同步
@@ -25,7 +26,9 @@
 python3 tools/sync_from_workspace.py
 ```
 
-需要 Python 3.10 或以上版本。其他使用者可直接编辑 `site/`，不需要导出工具。`index.html` 与 `portfolio-yangcong-draft.html` 是同一首页的两个入口，使用导出工具时会同时更新。
+导出需要 Python 3.10 或以上版本及 Pillow（`python3 -m pip install Pillow`）。导出时自动生成 480、800、1280 像素宽的预览图，不放大小尺寸原图；首屏优先加载，后续图片延迟加载。预览图文件名包含内容指纹，后续发布会复用未变更的图片。原始素材与放大查看链接保留。
+
+其他使用者可直接编辑 `site/`，不需要导出工具。`index.html` 与 `portfolio-yangcong-draft.html` 是同一首页的两个入口，使用导出工具时会同时更新。`site/_images/` 是自动生成的预览目录，请勿在其中手工存放素材。
 
 本机已通过 GitHub Desktop 连接这个仓库。每次完成一批修改，先导出、检查并生成提交：
 
